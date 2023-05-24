@@ -2,15 +2,13 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -36,18 +34,18 @@ public class Membre {
 	private String qualification; // Qualification or highest degree obtained by the member
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Laboratoire laboratoire;
 
-	@JsonManagedReference
+	@JsonProperty(access = Access.READ_ONLY)
 	@OneToMany(mappedBy = "membre")
 	private Collection<ExpressionBesoin> expressionBesoins;
 
-	@JsonManagedReference
+	@JsonProperty(access = Access.READ_ONLY)
 	@OneToMany(mappedBy = "membre")
 	private Collection<Dotation_Project> dotationProjects;
 
-	@JsonManagedReference
+	@JsonProperty(access = Access.READ_ONLY)	
 	@OneToMany(mappedBy = "membre")
 	private Collection<Dotation_Membre> dotation_Membres;
 

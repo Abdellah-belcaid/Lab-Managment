@@ -2,7 +2,8 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,6 @@ public class TypeBesoin {
 	private Long id;
 
 	@OneToMany(mappedBy = "typeBesoin")
-	@JsonManagedReference
+	@JsonProperty(access = Access.READ_ONLY)
 	private Collection<ExpressionBesoin> expressionBesoins;
 }

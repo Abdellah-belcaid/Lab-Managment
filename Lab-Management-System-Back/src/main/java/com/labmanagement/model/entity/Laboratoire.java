@@ -2,8 +2,8 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,11 +36,11 @@ public class Laboratoire {
 	private String description; // Brief description of the lab's research activities
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(nullable = false)
 	private Etablissement etablissement;
 
-	@JsonManagedReference
+	@JsonProperty(access = Access.READ_ONLY)
 	@OneToMany(mappedBy = "laboratoire")
 	private Collection<Membre> membres;
 

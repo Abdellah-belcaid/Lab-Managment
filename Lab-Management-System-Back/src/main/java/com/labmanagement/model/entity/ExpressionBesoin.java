@@ -2,7 +2,8 @@ package com.labmanagement.model.entity;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,14 +30,14 @@ public class ExpressionBesoin {
 	private Date validatDate;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Membre membre;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Responsable responsable;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private TypeBesoin typeBesoin;
 }

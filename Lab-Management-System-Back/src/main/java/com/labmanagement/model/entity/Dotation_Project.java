@@ -2,7 +2,8 @@ package com.labmanagement.model.entity;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -22,17 +23,19 @@ public class Dotation_Project {
 
 	@EmbeddedId
 	private DotationProjectId id;
-
+	private String status;
+	private String source;
+	private String purpose;
 	private Double endowmentAmount;
 
 	@ManyToOne
 	@JoinColumn(name = "projet_id", insertable = false, updatable = false)
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Projet projet;
 
 	@ManyToOne
 	@JoinColumn(name = "membre_id", insertable = false, updatable = false)
-	@JsonBackReference
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Membre membre;
 
 	@Embeddable

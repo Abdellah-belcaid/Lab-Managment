@@ -2,8 +2,8 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,10 +27,10 @@ public class Etablissement {
 	private String nom;
 	private String email;
 	private String stieWeb;
-	private String GSM;
+	private String gsm;
 	private String adresse;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "etablissement")	
+	@OneToMany(mappedBy = "etablissement")
+	@JsonProperty(access = Access.READ_ONLY)
 	private Collection<Laboratoire> laboratoires;
 }

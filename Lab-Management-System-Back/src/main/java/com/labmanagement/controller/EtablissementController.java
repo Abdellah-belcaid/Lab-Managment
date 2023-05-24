@@ -42,6 +42,7 @@ public class EtablissementController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Etablissement> updateEtablissement(@PathVariable Long id,
 			@RequestBody Etablissement etablissement) {
+		System.err.println(etablissement);
 		Etablissement updatedEtablissement = etablissementService.updateEtablissement(etablissement);
 		return ResponseEntity.ok(updatedEtablissement);
 	}
