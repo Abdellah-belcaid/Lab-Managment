@@ -12,7 +12,7 @@ public interface IEtablissementService {
 
 	public Etablissement findEtablissementById(Long id);
 
-	public Etablissement updateEtablissement(Etablissement etablissement);
+	public Etablissement updateEtablissement(Long id,Etablissement etablissement);
 
 	public void deleteEtablissement(Long id);
 

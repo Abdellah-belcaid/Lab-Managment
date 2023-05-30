@@ -2,7 +2,6 @@ package com.labmanagement.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import com.labmanagement.model.entity.Etablissement;
 import com.labmanagement.service.IEtablissementService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/v1/etablissements")
+@RequiredArgsConstructor
 public class EtablissementController {
 
 	private final IEtablissementService etablissementService;
-
-	public EtablissementController(IEtablissementService etablissementService) {
-		this.etablissementService = etablissementService;
-	}
 
 	@PostMapping
 	public ResponseEntity<Etablissement> addEtablissement(@RequestBody Etablissement etablissement) {
@@ -41,9 +39,8 @@ public class EtablissementController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Etablissement> updateEtablissement(@PathVariable Long id,
-			@RequestBody Etablissement etablissement) {
-		System.err.println(etablissement);
-		Etablissement updatedEtablissement = etablissementService.updateEtablissement(etablissement);
+			@RequestBody Etablissement etablissement) {				
+		Etablissement updatedEtablissement = etablissementService.updateEtablissement(id,etablissement);
 		return ResponseEntity.ok(updatedEtablissement);
 	}
 

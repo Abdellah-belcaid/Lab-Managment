@@ -1,11 +1,13 @@
 package com.labmanagement.service.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.labmanagement.model.entity.Etablissement;
 import com.labmanagement.repository.EtablissementRepository;
+import com.labmanagement.repository.LaboratoireRepository;
 import com.labmanagement.service.IEtablissementService;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import lombok.AllArgsConstructor;
 public class EtablissementService implements IEtablissementService {
 
 	private final EtablissementRepository etablissementRepository;
+	private final LaboratoireRepository laboratoireRepository;
 
 	@Override
 	public Etablissement addEtablissement(Etablissement etablissement) {
@@ -32,14 +35,21 @@ public class EtablissementService implements IEtablissementService {
 	}
 
 	@Override
-	public Etablissement updateEtablissement(Etablissement etablissement) {
-
+	public Etablissement updateEtablissement(Long id, Etablissement etablissement) {
+		etablissement.setId(id);
 		return etablissementRepository.save(etablissement);
 	}
 
 	@Override
 	public void deleteEtablissement(Long id) {
-		etablissementRepository.deleteById(id);
+
+		Optional<Etablissement> etablissement = etablissementRepository.findById(id);
+		if (etablissement.isPresent()) {
+			etablissement.get().getLaboratoires().stream()
+					.forEach(lab -> laboratoireRepository.deleteById(lab.getId()));
+			etablissementRepository.deleteById(id);
+		}
+
 	}
 
 }

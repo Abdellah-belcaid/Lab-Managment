@@ -1,0 +1,113 @@
+<div class="container-xxl mt-2">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-subtitle>Membre List</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-form-field>
+        <input (keyup)="applyFilter($event)" matInput placeholder="Filter" #FilterInput>
+      </mat-form-field>
+      <!-- Angular Material table component-->
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Define columns with column definitions using ng-container-->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.name }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="designation">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Designation
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.designation }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Email
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.email }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Phone Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.phoneNumber }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="department">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Department
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.department }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="researchArea">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Research Area
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.researchArea }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="qualification">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Qualification
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{ membre.qualification }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="laboratoire">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Laboratoire
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+          <mat-cell *matCellDef="let membre">
+            <button mat-icon-button color="primary" (click)="onOpenMembreModal(membre, 'edit')">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onDeleteMembre(membre.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{FilterInput.value}}"</td>
+        </tr>
+
+        <!-- Set row header and keep placeholders for cells by adding *matRowDef and *matHeaderRowDef-->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements"></mat-paginator>
+
+    </mat-card-content>
+
+    <mat-card-footer>
+      <mat-card-actions>
+        <button mat-button (click)="onOpenMembreModal(null,'add')">add a new Membre</button>
+      </mat-card-actions>
+    </mat-card-footer>
+
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+
+
+

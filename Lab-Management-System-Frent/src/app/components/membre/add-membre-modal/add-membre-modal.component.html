@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New Membre</mat-card-title>
+  </mat-card-header>
+
+  <form #membreForm="ngForm" (ngSubmit)="onAddMembre(membreForm)">
+        <div mat-dialog-content class="content">
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input matInput type="text" placeholder="Ex. John Doe" [(ngModel)]="newMembre.name" name="name" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" placeholder="Ex. john.doe@example.com" [(ngModel)]="newMembre.email" name="email" required>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Téléphone</mat-label>
+              <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="newMembre.phoneNumber" name="phoneNumber" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Department</mat-label>
+              <input matInput placeholder="Ex. Department du membre" [(ngModel)]="newMembre.department" name="department" required>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Designation</mat-label>
+              <input matInput type="text" placeholder="Ex. Designation" [(ngModel)]="newMembre.designation" name="designation" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Laboratoire</mat-label>
+              <mat-select [(ngModel)]="newMembre.laboratoire" name="laboratoire" required>
+                <mat-option *ngFor="let lab of laboratoires" [value]="lab">{{ lab.nom }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Research Area</mat-label>
+              <input matInput type="text" placeholder="Ex. Research Area" [(ngModel)]="newMembre.researchArea" name="researchArea">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Qualification</mat-label>
+              <input matInput type="text" placeholder="Ex. Qualification" [(ngModel)]="newMembre.qualification" name="qualification">
+            </mat-form-field>
+          </div>
+        </div>
+        <div mat-dialog-actions class="action">
+          <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="membreForm.invalid">Save</button>
+        </div>
+      </form>
+    </mat-card>

@@ -1,0 +1,69 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New Laboratoire</mat-card-title>
+  </mat-card-header>
+
+  <form #laboratoireForm="ngForm" (ngSubmit)="onAddLaboratoire(laboratoireForm)">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" placeholder="Ex. Mon Laboratoire" [(ngModel)]="newLaboratoire.nom" name="nom"
+            required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Ex. laboratoire@example.com" [(ngModel)]="newLaboratoire.email"
+            name="email" required>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse</mat-label>
+          <input matInput placeholder="Ex. Adresse du laboratoire" [(ngModel)]="newLaboratoire.adresse" name="adresse"
+            required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Téléphone</mat-label>
+          <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="newLaboratoire.telephone"
+            name="telephone" required>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Responsable</mat-label>
+          <input matInput type="text" placeholder="Ex. John Doe" [(ngModel)]="newLaboratoire.responsable"
+            name="responsable" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Domaine</mat-label>
+          <input matInput type="text" placeholder="Ex. Informatique" [(ngModel)]="newLaboratoire.domaine" name="domaine"
+            required>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Ex. Description du laboratoire" [(ngModel)]="newLaboratoire.description"
+            name="description" required></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Etablissement</mat-label>
+          <mat-select [(ngModel)]="newLaboratoire.etablissement" name="etablissement">
+            <mat-option *ngFor="let etablissement of etablissements" [value]="etablissement" required>{{
+              etablissement.nom }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="laboratoireForm.invalid">Add</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

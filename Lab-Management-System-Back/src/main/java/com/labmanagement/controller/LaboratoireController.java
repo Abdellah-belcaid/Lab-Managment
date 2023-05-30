@@ -21,6 +21,7 @@ public class LaboratoireController {
 
 	@PostMapping
 	public ResponseEntity<Laboratoire> addLaboratoire(@RequestBody Laboratoire laboratoire) {
+		System.err.println(laboratoire);
 		Laboratoire createdLaboratoire = laboratoireService.addLaboratoire(laboratoire);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdLaboratoire);
 	}

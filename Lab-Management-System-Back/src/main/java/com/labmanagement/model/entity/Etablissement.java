@@ -26,7 +26,7 @@ public class Etablissement {
 	private Long id;
 	private String nom;
 	private String email;
-	private String stieWeb;
+	private String siteWeb;
 	private String gsm;
 	private String adresse;
 

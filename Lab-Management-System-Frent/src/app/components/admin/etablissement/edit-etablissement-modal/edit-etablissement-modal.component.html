@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>edit Etablissement</mat-card-title>
+  </mat-card-header>
+
+  <form #etablissementForm="ngForm" (ngSubmit)="onEditEtablissement(etablissementForm)">
+    <div mat-dialog-content class="content">
+
+      <input type="hidden" name="id" [(ngModel)]="editEtablissement.id">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" placeholder="Ex. Mon Etablissement" [(ngModel)]="editEtablissement.nom" name="nom">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Ex. etablissement@example.com" [(ngModel)]="editEtablissement.email"
+            name="email">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Site Web</mat-label>
+          <input matInput placeholder="Ex. www.monetablissement.com" [(ngModel)]="editEtablissement.siteWeb"
+            name="siteWeb">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>GSM</mat-label>
+          <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="editEtablissement.gsm" name="gsm">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse</mat-label>
+          <textarea matInput placeholder="Ex. Adresse de l'établissement" [(ngModel)]="editEtablissement.adresse"
+            name="adresse"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="etablissementForm.invalid">edit</button>
+      <button mat-raised-button color="" type="reset" >Reset</button>
+    </div>
+  </form>
+
+</mat-card>
