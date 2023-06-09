@@ -12,15 +12,7 @@ body {
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-
-
 /* Import ngx-toastr styles */
 @import "../node_modules/ngx-toastr/toastr.css";
 
 
-
-body {
-  background-image: url('assets/cover.jpg');
-  background-size: cover;
-  /* Other background properties if needed */
-}

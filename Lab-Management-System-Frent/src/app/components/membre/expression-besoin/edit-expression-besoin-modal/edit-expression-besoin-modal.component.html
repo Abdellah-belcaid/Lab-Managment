@@ -1,0 +1,75 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit ExpressionBesoin</mat-card-title>
+  </mat-card-header>
+
+  <form #expressionBesoinForm="ngForm" (ngSubmit)="onEditExpressionBesoin(expressionBesoinForm)">
+
+    <input type="hidden" name="id" [(ngModel)]="editedExpressionBesoin.id">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" placeholder="Enter Description" [(ngModel)]="editedExpressionBesoin.description"
+            name="description" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Montant</mat-label>
+          <input matInput type="number" placeholder="Enter Montant" [(ngModel)]="editedExpressionBesoin.montant"
+            name="montant" required>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Demande Date</mat-label>
+          <input matInput [matDatepicker]="picker1" placeholder="Choose Demand Date"
+            [(ngModel)]="editedExpressionBesoin.demandeDate" name="demandeDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Validation Date</mat-label>
+          <input matInput [matDatepicker]="picker2" placeholder="Choose Validation Date"
+            [(ngModel)]="editedExpressionBesoin.validatDate" name="validatDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Is Valid</mat-label>
+          <mat-select  name="isValid" [(value)]="selected" required>
+            <mat-option value="true" >Yes</mat-option>
+            <mat-option value="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Membre</mat-label>
+          <mat-select [(ngModel)]="editedExpressionBesoin.membre" name="membre" required>
+            <mat-option *ngFor="let membre of membres" [value]="membre">{{ membre.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Type Besoin</mat-label>
+          <mat-select [(ngModel)]="editedExpressionBesoin.typeBesoins" name="typeBesoins" required multiple>
+            <mat-option *ngFor="let typeBesoin of typeBesoins" [value]="typeBesoin">{{ typeBesoin.type }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="expressionBesoinForm.invalid">Save</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

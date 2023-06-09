@@ -1,15 +1,16 @@
 package com.labmanagement.model.entity;
 
-import java.util.Collection;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.labmanagement.model.enums.ExpressionBesoinType;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,8 +26,12 @@ public class TypeBesoin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Enumerated(EnumType.STRING)
+	private ExpressionBesoinType type;
 
-	@OneToMany(mappedBy = "typeBesoin")
-	@JsonProperty(access = Access.READ_ONLY)
-	private Collection<ExpressionBesoin> expressionBesoins;
+	@ManyToOne
+    @JoinColumn(name = "expression_besoin_id")
+	@JsonIgnoreProperties("typeBesoins")
+	private ExpressionBesoin expressionBesoin;
 }

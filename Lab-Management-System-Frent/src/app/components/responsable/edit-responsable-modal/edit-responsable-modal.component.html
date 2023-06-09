@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit Responsable</mat-card-title>
+  </mat-card-header>
+
+  <form #responsableForm="ngForm" (ngSubmit)="onEditResponsable(responsableForm)">
+    <div mat-dialog-content class="content">
+      <input type="hidden" name="id" [(ngModel)]="editResponsable.id">
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" placeholder="Ex. John Doe" [(ngModel)]="editResponsable.nom" name="nom">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Prenom</mat-label>
+          <input matInput type="text" placeholder="Ex. Jane Smith" [(ngModel)]="editResponsable.prenom" name="prenom">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Tel</mat-label>
+          <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="editResponsable.tel" name="tel">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Ex. responsable@example.com" [(ngModel)]="editResponsable.email"
+            name="email">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="responsableForm.invalid">Edit</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

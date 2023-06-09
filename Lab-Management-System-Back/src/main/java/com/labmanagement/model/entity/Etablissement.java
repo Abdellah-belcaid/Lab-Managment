@@ -2,8 +2,8 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +30,8 @@ public class Etablissement {
 	private String gsm;
 	private String adresse;
 
-	@OneToMany(mappedBy = "etablissement")
-	@JsonProperty(access = Access.READ_ONLY)
+	@OneToMany(mappedBy = "etablissement",cascade =CascadeType.ALL )
+//	@JsonProperty(access = Access.READ_ONLY)
+	@JsonIgnoreProperties("etablissement")
 	private Collection<Laboratoire> laboratoires;
 }

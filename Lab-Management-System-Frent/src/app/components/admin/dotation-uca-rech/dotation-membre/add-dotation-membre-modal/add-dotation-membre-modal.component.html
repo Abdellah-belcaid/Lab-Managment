@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New Dotation Membre</mat-card-title>
+  </mat-card-header>
+  <form #dotationProjectForm="ngForm" (ngSubmit)="onAddDotationMembre(dotationProjectForm)">
+    <div mat-dialog-content class="content">
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Montant</mat-label>
+          <input matInput placeholder="Ex. 10000dh" [(ngModel)]="dotationMembre.montant" name="montant">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Anne Affecter</mat-label>
+          <input matInput type="number" placeholder="Ex. 2018" [(ngModel)]="dotationMembre.anneAffecter" name="anneAffecter">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Membre</mat-label>
+          <mat-select [(ngModel)]="dotationMembreId.membreId" name="membreId" required>
+            <mat-option *ngFor="let membre of membres" [value]="membre.id">{{ membre.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="dotationProjectForm.invalid">Add</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

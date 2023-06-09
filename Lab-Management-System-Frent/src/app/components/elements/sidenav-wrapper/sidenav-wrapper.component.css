@@ -1,0 +1,40 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-nav-list .menu-item {
+  margin-left: 8px;
+}
+
+mat-nav-list .chevron-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+}
+
+mat-nav-list .chevron-button.rotated {
+  transform: rotate(180deg);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-item-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.logo-image {
+  width: 42px; /* Adjust the width as needed */
+  height: 42px; /* Adjust the height as needed */
+  object-fit: contain;
+  margin-left: 8px; /* Adjust the margin as needed */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.logo-image.hide {
+  opacity: 0;
+}

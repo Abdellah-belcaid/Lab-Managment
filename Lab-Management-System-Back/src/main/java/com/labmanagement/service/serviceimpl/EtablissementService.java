@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.labmanagement.model.entity.Etablissement;
 import com.labmanagement.repository.EtablissementRepository;
-import com.labmanagement.repository.LaboratoireRepository;
 import com.labmanagement.service.IEtablissementService;
+import com.labmanagement.service.ILaboratoireService;
 
 import lombok.AllArgsConstructor;
 
@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 public class EtablissementService implements IEtablissementService {
 
 	private final EtablissementRepository etablissementRepository;
-	private final LaboratoireRepository laboratoireRepository;
+	private final ILaboratoireService laboratoireService;
 
 	@Override
 	public Etablissement addEtablissement(Etablissement etablissement) {
@@ -46,7 +46,7 @@ public class EtablissementService implements IEtablissementService {
 		Optional<Etablissement> etablissement = etablissementRepository.findById(id);
 		if (etablissement.isPresent()) {
 			etablissement.get().getLaboratoires().stream()
-					.forEach(lab -> laboratoireRepository.deleteById(lab.getId()));
+					.forEach(lab -> laboratoireService.deleteLaboratoire(lab.getId()));
 			etablissementRepository.deleteById(id);
 		}
 

@@ -51,6 +51,13 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let projet">
+
+            <button mat-icon-button color="warn" (click)="onOpenProjetModal(projet,'dotation-list')">
+              <mat-icon>list</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onOpenProjetModal(projet,'add-dotation')">
+              <mat-icon>add</mat-icon>
+            </button>
             <button mat-icon-button color="primary" (click)="onOpenProjetModal(projet, 'edit')">
               <mat-icon>edit</mat-icon>
             </button>

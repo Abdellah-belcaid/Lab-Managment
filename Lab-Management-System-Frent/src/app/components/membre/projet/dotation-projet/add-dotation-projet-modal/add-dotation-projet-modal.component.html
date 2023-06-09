@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New Dotation Project</mat-card-title>
+  </mat-card-header>
+
+  <form #dotationProjectForm="ngForm" (ngSubmit)="onAddDotationProject(dotationProjectForm)">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="newDotationProject.status" name="status">
+            <mat-option value="Pending">Pending<mat-icon>pending</mat-icon></mat-option>
+            <mat-option value="InProgress">InProgress<mat-icon>hourglass_top</mat-icon></mat-option>
+            <mat-option value="Completed">Completed<mat-icon>check_circle</mat-icon></mat-option>
+            <mat-option value="Cancelled">Cancelled<mat-icon>cancel</mat-icon></mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Source</mat-label>
+          <input matInput type="text" placeholder="Ex. Source" [(ngModel)]="newDotationProject.source" name="source">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Purpose</mat-label>
+          <input matInput placeholder="Ex. Purpose" [(ngModel)]="newDotationProject.purpose" name="purpose">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Endowment Amount</mat-label>
+          <input matInput type="number" placeholder="Ex. 1000" [(ngModel)]="newDotationProject.endowmentAmount"
+            name="endowmentAmount">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Membre</mat-label>
+          <mat-select [(ngModel)]="dotationProjectId.membreId" name="membreId" required>
+            <mat-option *ngFor="let membre of membres" [value]="membre.id">{{ membre.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="dotationProjectForm.invalid">Add</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

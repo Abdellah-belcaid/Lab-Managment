@@ -1,0 +1,65 @@
+<div class="container-xxl mt-2">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-subtitle>DotationUcaRech List</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-form-field>
+        <input (keyup)="applyFilter($event)" matInput placeholder="Filter" #FilterInput>
+      </mat-form-field>
+      <!-- Angular Material table component-->
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Define columns with column definitions using ng-container-->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationUcaRech"> {{ dotationUcaRech.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="anneAffectation">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Anne Affectation
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationUcaRech"> {{ dotationUcaRech.anneAffectation }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="membreNames">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Membre Names
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationUcaRech">  </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+          <mat-cell *matCellDef="let dotationUcaRech">
+
+            <button mat-icon-button color="warn" (click)="onOpenDotationUcaRechModal(dotationUcaRech,'dotation-Membre-list')">
+              <mat-icon>list</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onOpenDotationUcaRechModal(dotationUcaRech,'add-dotation-Membre')">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="onOpenDotationUcaRechModal(dotationUcaRech, 'edit')">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onDeleteDotationUcaRech(dotationUcaRech.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+
+        <!-- Set row header and keep placeholders for cells by adding *matRowDef and *matHeaderRowDef-->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements"></mat-paginator>
+
+
+    </mat-card-content>
+  </mat-card>
+</div>

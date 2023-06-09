@@ -4,10 +4,13 @@ import { TypeBesoin } from './typeBesoin.model';
 
 export class ExpressionBesoin {
   id!: number;
+  description!: string;
   montant!: number;
   demandeDate!: Date;
   validatDate!: Date;
-  membre!: Membre;
+  isValid: boolean = false;
+  membre: Membre = new Membre;
   responsable: Responsable = new Responsable;
-  typeBesoin: TypeBesoin = new TypeBesoin;
+  typeBesoins: TypeBesoin[] = [];
 }
+

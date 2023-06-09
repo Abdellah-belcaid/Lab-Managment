@@ -1,1 +1,51 @@
-<p>edit-projet-modal works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit Projet</mat-card-title>
+  </mat-card-header>
+
+  <form #projetForm="ngForm" (ngSubmit)="onEditProjet(projetForm)">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" placeholder="Ex. Project Title" [(ngModel)]="editProjet.title" name="title"
+            required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Field</mat-label>
+          <input matInput type="text" placeholder="Ex. Project Field" [(ngModel)]="editProjet.field" name="field"
+            required>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startDatePicker" placeholder="Ex. Start Date"
+            [(ngModel)]="editProjet.startDate" name="startDate" required>
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endDatePicker" placeholder="Ex. End Date" [(ngModel)]="editProjet.endDate"
+            name="endDate" required>
+          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Ex. Project Description" [(ngModel)]="editProjet.description" name="description"
+            required />
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="projetForm.invalid">Save</button>
+    </div>
+  </form>
+</mat-card>

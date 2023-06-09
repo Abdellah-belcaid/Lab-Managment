@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Laboratoire } from 'src/app/model/laboratoire.model';
@@ -18,7 +17,7 @@ import { EditLaboratoireModalComponent } from './edit-laboratoire-modal/edit-lab
 })
 export class LaboratoireComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'nom', 'email', 'adresse', 'telephone', 'responsable', 'domaine', 'description', 'action'];
+  displayedColumns: string[] = ['id', 'nom', 'email', 'adresse', 'telephone', 'responsable', 'domaine', 'description', 'etablissement', 'action'];
   public laboratoires: Laboratoire[] = [];
   dataSource: MatTableDataSource<Laboratoire> = new MatTableDataSource();
 
@@ -55,24 +54,24 @@ export class LaboratoireComponent implements OnInit, AfterViewInit {
   }
 
 
-public onDeleteLaboratoire(laboratoireId: number): void {
-  showConfirmationAlert('Confirmation', 'Are you sure you want to delete this laboratoire?', 'Delete', 'Cancel').then(
-    (confirmed) => {
-      if (confirmed) {
-        this.laboratoireService.deleteLaboratoire(laboratoireId).subscribe(
-          () => {
-            this.getLaboratoires();
-            showAlert('success', 'Success', 'Laboratoire deleted successfully!');
-          },
-          (error: HttpErrorResponse) => {
-            showAlert('error', `Error : ${getStatusName(error.status)}`, `${error.message}`);
-            console.log(error);
-          }
-        );
+  public onDeleteLaboratoire(laboratoireId: number): void {
+    showConfirmationAlert('Confirmation', 'Are you sure you want to delete this laboratoire?', 'Delete', 'Cancel').then(
+      (confirmed) => {
+        if (confirmed) {
+          this.laboratoireService.deleteLaboratoire(laboratoireId).subscribe(
+            () => {
+              this.getLaboratoires();
+              showAlert('success', 'Success', 'Laboratoire deleted successfully!');
+            },
+            (error: HttpErrorResponse) => {
+              showAlert('error', `Error : ${getStatusName(error.status)}`, `${error.message}`);
+              console.log(error);
+            }
+          );
+        }
       }
-    }
-  );
-}
+    );
+  }
 
 
   public onOpenLaboratoireModal(laboratoire: any, operation: string) {

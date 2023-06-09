@@ -9,6 +9,8 @@ import { ProjetService } from 'src/app/service/projet.service';
 import { getStatusName, showAlert, showConfirmationAlert } from 'src/app/utils/alertMessages';
 import { AddProjetModalComponent } from './add-projet-modal/add-projet-modal.component';
 import { EditProjetModalComponent } from './edit-projet-modal/edit-projet-modal.component';
+import { AddDotationProjectModalComponent } from './dotation-projet/add-dotation-projet-modal/add-dotation-projet-modal.component';
+import { DotationProjetComponent } from './dotation-projet/dotation-projet.component';
 
 @Component({
   selector: 'app-projet',
@@ -84,10 +86,26 @@ export class ProjetComponent implements OnInit, AfterViewInit {
         }
       });
     }
+    if (operation === 'add-dotation') {
+      dialogRef = this.dialog.open(AddDotationProjectModalComponent, {
+        data: {
+          projet: projet
+        }
+      });
+    }
+    if (operation === 'dotation-list') {
+      dialogRef = this.dialog.open(DotationProjetComponent, {
+        data: {
+          id: projet.id,
+          type: 'projet'
+        }
+      });
+    }
     dialogRef.afterClosed().subscribe(() => {
       this.getProjets();
     });
   }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -47,5 +47,15 @@ public class DotationProjectController {
     }
 
     // Add more endpoints as needed for your application
+    
+    @GetMapping("/projet/{projetId}")
+    public List<Dotation_Project> getAllByProjetId(@PathVariable Long projetId) {
+        return dotationProjectService.getAllByProjetId(projetId);
+    }
+    
+    @GetMapping("/membre/{membreId}")
+    public List<Dotation_Project> getAllByMembreId(@PathVariable Long membreId) {
+        return dotationProjectService.getAllByMembreId(membreId);
+    }
 
 }

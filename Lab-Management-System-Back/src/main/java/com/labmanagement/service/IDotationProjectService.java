@@ -14,6 +14,12 @@ public interface IDotationProjectService {
 
 	List<Dotation_Project> getAllDotationProjects();
 
+	List<Dotation_Project> getAllByProjetId(Long projetId);
+
+	List<Dotation_Project> getAllByMembreId(Long membreId);
+	
+	
+
     // Add more methods as needed for your application
 
 }

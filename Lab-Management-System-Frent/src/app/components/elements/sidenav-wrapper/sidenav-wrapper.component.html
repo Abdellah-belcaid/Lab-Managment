@@ -1,0 +1,86 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" opened="isExpanded">
+    <mat-nav-list>
+
+      <mat-list-item class="sidebar-item" (click)="isExpanded = !isExpanded">
+        <div class="sidebar-item-container">
+          <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
+          <img *ngIf="isExpanded" src="..\..\assets\images\logo\logo1.png" alt="Logo" class="logo-image"
+            [ngClass]="{ hide: !isExpanded }">
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/etablissements'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>business</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">etablissements</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/admin/laboratoires'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>science</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">laboratoires</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/membre'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">membre</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/projet'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>description </mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">projet</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/responsable'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">responsable</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'/expressionBesoin'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">expressionBesoin</span>
+      </mat-list-item>
+
+
+      <mat-list-item [routerLink]="'/dotation-uca-rech'" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>list</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">dotation-uca-rech</span>
+      </mat-list-item>
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Content - rendered Content for the current router path into the <router-outlet>, e.g. /dashboard or /info-->
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button routerLink="/" routerLinkActive="active-link" class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+      </button>
+      <span>Book Store | </span>
+
+      <span class="example-spacer"></span>
+
+      <!-- <button mat-button routerLink="/login" routerLinkActive="active-link">
+        <mat-icon aria-label="login icon" fontIcon="login"></mat-icon>
+        Sign In
+      </button>
+      <button mat-button routerLink="/register" routerLinkActive="active-link">
+        <mat-icon>touch_app </mat-icon>
+        Sign Up
+      </button>
+
+      <button mat-button routerLink="/profile" routerLinkActive="active-link">
+        <mat-icon>account_circle</mat-icon>profile
+      </button>
+
+      <button mat-button>
+        <mat-icon aria-label="logout icon" fontIcon="logout" color="warn"></mat-icon>
+        Sign Out
+      </button> -->
+
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

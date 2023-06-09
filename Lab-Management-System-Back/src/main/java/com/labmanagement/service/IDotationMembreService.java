@@ -14,4 +14,8 @@ public interface IDotationMembreService {
 
 	Collection<Dotation_Membre> getAllDotationMembres();
 
+	Collection<Dotation_Membre> getAllByUcaRechId(Long ucaRechId);
+
+	Collection<Dotation_Membre> getAllByMembreId(Long membreId);
+
 }

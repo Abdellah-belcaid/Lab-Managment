@@ -1,15 +1,15 @@
 package com.labmanagement.model.entity;
 
 import java.sql.Date;
+import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,19 +25,21 @@ public class ExpressionBesoin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String Description;
 	private double montant;
 	private Date demandeDate;
 	private Date validatDate;
+	private Boolean isValid;
 
 	@ManyToOne
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties("expressionBesoins")
 	private Membre membre;
 
 	@ManyToOne
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties("expressionBesoins")
 	private Responsable responsable;
 
-	@ManyToOne
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private TypeBesoin typeBesoin;
+	@OneToMany(mappedBy = "expressionBesoin")
+	@JsonIgnoreProperties("expressionBesoin")
+	private Collection<TypeBesoin> typeBesoins;
 }

@@ -2,8 +2,7 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -34,7 +33,7 @@ public class Responsable {
 	private String email;
 
 	@OneToMany(mappedBy = "responsable")
-	@JsonProperty(access = Access.READ_ONLY)
+	@JsonIgnoreProperties("responsable")
 	private Collection<ExpressionBesoin> expressionBesoins;
 
 }

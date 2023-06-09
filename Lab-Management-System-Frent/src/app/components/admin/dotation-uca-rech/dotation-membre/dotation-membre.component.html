@@ -1,0 +1,73 @@
+<div class="container-xxl mt-2">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-subtitle>Dotation Membre List</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-form-field>
+        <input (keyup)="applyFilter($event)" matInput placeholder="Filter" #FilterInput>
+      </mat-form-field>
+      <!-- Angular Material table component-->
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Define columns with column definitions using ng-container-->
+        <ng-container matColumnDef="ucaRechId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> UCA Rech ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre"> {{ dotationMembre.id.ucaRechId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="membreId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Membre ID
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre"> {{ dotationMembre.id.membreId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="montant">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Montant
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre"> {{ dotationMembre.montant }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="anneAffecter">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Anne Affecter
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre"> {{ dotationMembre.anneAffecter }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ucaRech">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> UCA Rech
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre"> {{ dotationMembre.ucaRech | json }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="membre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Membre
+          </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre"> {{ dotationMembre.membre.name }} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+          <mat-cell *matCellDef="let dotationMembre">
+            <button mat-icon-button color="warn" (click)="onDeleteDotationMembre(dotationMembre.id.membreId, dotationMembre.id.ucaRechId)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+
+        <!-- Set row header and keep placeholders for cells by adding *matRowDef and *matHeaderRowDef-->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements"></mat-paginator>
+
+
+    </mat-card-content>
+  </mat-card>
+</div>

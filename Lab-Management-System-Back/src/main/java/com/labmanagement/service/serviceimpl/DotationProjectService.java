@@ -36,7 +36,18 @@ public class DotationProjectService implements IDotationProjectService {
 	public void deleteDotationProject(Long projetId, Long membreId) {
 		dotationProjetRepository.deleteById(new Dotation_Project.DotationProjectId(projetId, membreId));
 	}
+	
+	
 
 	// Add more methods as needed for your application
+	
+	 @Override
+    public List<Dotation_Project> getAllByProjetId(Long projetId) {
+        return dotationProjetRepository.findAllById_ProjetId(projetId);
+    }
+    @Override
+    public List<Dotation_Project> getAllByMembreId(Long membreId) {
+        return dotationProjetRepository.findAllById_MembreId(membreId);
+    }
 
 }

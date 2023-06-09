@@ -2,8 +2,7 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +25,9 @@ public class DotationUcaRech {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int anneAffectation;
-	
 
 	@OneToMany(mappedBy = "ucaRech")
-	@JsonProperty(access = Access.READ_ONLY)
+	@JsonIgnoreProperties("ucaRech")
 	private Collection<Dotation_Membre> dotation_Membres;
 
 }

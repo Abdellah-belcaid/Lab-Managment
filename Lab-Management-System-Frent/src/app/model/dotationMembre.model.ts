@@ -4,8 +4,8 @@ import { Membre } from './membre.model';
 export class Dotation_Membre {
   id!: DotationMembreId;
   montant!: number;
-  AnneAffecter!: number;
-  ucaRech: DotationUcaRech = new DotationUcaRech;
+  anneAffecter!: number;
+  ucaRech!: DotationUcaRech ;
   membre!: Membre;
 }
 

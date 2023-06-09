@@ -16,6 +16,7 @@ import { showAlert, getStatusName } from 'src/app/utils/alertMessages';
 export class AddLaboratoireModalComponent implements OnInit {
   public newLaboratoire: Laboratoire = new Laboratoire();
   public etablissements: Etablissement[] = []; // Populate this array with the list of establishments
+
   constructor(
     private laboratoireService: LaboratoireService,
     public dialogRef: MatDialogRef<AddLaboratoireModalComponent>,
@@ -25,7 +26,6 @@ export class AddLaboratoireModalComponent implements OnInit {
   ngOnInit(): void {
     this.getEtablissements();
   }
-
 
   private getEtablissements(): void {
     this.etablissementService.getAllEtablissements().subscribe(

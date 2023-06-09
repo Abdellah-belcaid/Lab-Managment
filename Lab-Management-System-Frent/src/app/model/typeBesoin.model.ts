@@ -1,6 +1,9 @@
+
+import { ExpressionBesoinType } from './expressionBesoinType.enum';
 import { ExpressionBesoin } from './expressionBesoin.model';
 
 export class TypeBesoin {
   id!: number;
-  expressionBesoins: ExpressionBesoin[] = [];
+  type!: ExpressionBesoinType;
+  expressionBesoins: ExpressionBesoin = new ExpressionBesoin;
 }

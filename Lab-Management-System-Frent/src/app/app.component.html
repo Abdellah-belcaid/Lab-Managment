@@ -1,44 +1,4 @@
-<mat-toolbar>
-  <button mat-icon-button routerLink="/" routerLinkActive="active-link" class="example-icon"
-    aria-label="Example icon-button with menu icon">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-  </button>
-  <span>Book Store | </span>
-
-  <button mat-button [matMenuTriggerFor]="menu" >Admin</button>
-  <mat-menu #menu="matMenu">
-    <button mat-button routerLink="/admin" routerLinkActive="active-link" >Admin</button>
-    <button mat-button routerLink="/admin/etablissements" routerLinkActive="active-link">etablissements</button>
-    <button mat-button routerLink="/admin/laboratoires" routerLinkActive="active-link">laboratoires</button>
-    <button mat-button routerLink="/membre" routerLinkActive="active-link">membre</button>
-    <button mat-button routerLink="/projet" routerLinkActive="active-link">projet</button>
-  </mat-menu>
-  <span class="example-spacer"></span>
-
-  <button mat-button routerLink="/login" routerLinkActive="active-link" >
-    <mat-icon aria-label="login icon" fontIcon="login"></mat-icon>
-    Sign In
-  </button>
-  <button mat-button routerLink="/register" routerLinkActive="active-link" >
-    <mat-icon>touch_app </mat-icon>
-    Sign Up
-  </button>
-
-  <button mat-button routerLink="/profile" routerLinkActive="active-link" >
-    <mat-icon>account_circle</mat-icon>profile
-  </button>
-
-  <button mat-button  >
-    <mat-icon aria-label="logout icon" fontIcon="logout" color="warn"></mat-icon>
-    Sign Out
-  </button>
-
-</mat-toolbar>
 
 
 
-
-<router-outlet></router-outlet>
-
-
-
+<app-sidenav-wrapper></app-sidenav-wrapper>

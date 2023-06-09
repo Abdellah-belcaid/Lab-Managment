@@ -60,6 +60,12 @@
           <mat-cell *matCellDef="let laboratoire"> {{ laboratoire.description }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="etablissement">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Etablissement">
+            Etablissement </mat-header-cell>
+          <mat-cell *matCellDef="let laboratoire"> {{ laboratoire.etablissement.nom }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let laboratoire">

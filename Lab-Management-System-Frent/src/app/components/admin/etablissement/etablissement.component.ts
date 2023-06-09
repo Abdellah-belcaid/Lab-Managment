@@ -28,7 +28,6 @@ export class EtablissementComponent implements OnInit, AfterViewInit {
   constructor(
     private etablissementService: EtablissementService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
   ) { }
 
   @ViewChild(MatSort) sort!: MatSort;

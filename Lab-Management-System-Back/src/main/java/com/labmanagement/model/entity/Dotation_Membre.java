@@ -2,8 +2,7 @@ package com.labmanagement.model.entity;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -28,12 +27,12 @@ public class Dotation_Membre {
 
 	@ManyToOne
 	@JoinColumn(name = "uca_rech_id", insertable = false, updatable = false)
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties("dotation_Membres")
 	private DotationUcaRech ucaRech;
 
 	@ManyToOne
 	@JoinColumn(name = "membre_id", insertable = false, updatable = false)
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties("dotation_Membres")
 	private Membre membre;
 
 	@Data

@@ -2,8 +2,7 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ public class Membre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String name;	
 	private String designation; // Designation or role of the member in the lab
 	private String email;
 	private String phoneNumber;
@@ -34,19 +33,19 @@ public class Membre {
 	private String qualification; // Qualification or highest degree obtained by the member
 
 	@ManyToOne
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties("membres")
 	private Laboratoire laboratoire;
 
-	@JsonProperty(access = Access.READ_ONLY)
 	@OneToMany(mappedBy = "membre")
+	@JsonIgnoreProperties("membre")
 	private Collection<ExpressionBesoin> expressionBesoins;
 
-	@JsonProperty(access = Access.READ_ONLY)
 	@OneToMany(mappedBy = "membre")
+	@JsonIgnoreProperties("membre")
 	private Collection<Dotation_Project> dotationProjects;
 
-	@JsonProperty(access = Access.READ_ONLY)	
 	@OneToMany(mappedBy = "membre")
+	@JsonIgnoreProperties("membre")
 	private Collection<Dotation_Membre> dotation_Membres;
 
 }

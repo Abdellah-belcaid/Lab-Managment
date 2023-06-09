@@ -50,4 +50,13 @@ public class DotationMembreService implements IDotationMembreService {
 		return dotationMembreRepository.findAll();
 	}
 
+	
+	@Override
+	public Collection<Dotation_Membre> getAllByUcaRechId(Long ucaRechId) {
+        return dotationMembreRepository.findAllById_UcaRechId(ucaRechId);
+    }
+	@Override
+    public Collection<Dotation_Membre> getAllByMembreId(Long membreId) {
+        return dotationMembreRepository.findAllById_MembreId(membreId);
+    }
 }

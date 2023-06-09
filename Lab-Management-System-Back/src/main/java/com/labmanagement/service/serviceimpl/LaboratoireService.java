@@ -46,6 +46,12 @@ public class LaboratoireService implements ILaboratoireService {
 
 	@Override
 	public void deleteLaboratoire(Long id) {
-		laboratoireRepository.deleteById(id);
+		laboratoireRepository.findById(id).ifPresent(laboratoire -> {
+			// Set the lab of associated members to null
+			laboratoire.getMembres().stream().forEach(membre -> membre.setLaboratoire(null));
+
+			laboratoireRepository.delete(laboratoire);
+		});
 	}
+
 }
