@@ -9,6 +9,7 @@ import { LaboratoireService } from 'src/app/service/laboratoire.service';
 import { getStatusName, showAlert, showConfirmationAlert } from 'src/app/utils/alertMessages';
 import { AddLaboratoireModalComponent } from './add-laboratoire-modal/add-laboratoire-modal.component';
 import { EditLaboratoireModalComponent } from './edit-laboratoire-modal/edit-laboratoire-modal.component';
+import { AddDirectorModalComponent } from '../../director/add-director-modal/add-director-modal.component';
 
 @Component({
   selector: 'app-laboratoire',
@@ -17,7 +18,7 @@ import { EditLaboratoireModalComponent } from './edit-laboratoire-modal/edit-lab
 })
 export class LaboratoireComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'nom', 'email', 'adresse', 'telephone', 'responsable', 'domaine', 'description', 'etablissement', 'action'];
+  displayedColumns: string[] = ['id', 'nom', 'email', 'adresse', 'telephone', 'responsable', 'domaine', 'description', 'etablissement','director', 'action'];
   public laboratoires: Laboratoire[] = [];
   dataSource: MatTableDataSource<Laboratoire> = new MatTableDataSource();
 
@@ -85,6 +86,12 @@ export class LaboratoireComponent implements OnInit, AfterViewInit {
         data: laboratoire // passing etablissement data to the dialog component
       });
     }
+    if (operation === 'set-director') {
+      dialogRef = this.dialog.open(AddDirectorModalComponent, {
+        data: laboratoire // passing etablissement data to the dialog component
+      });
+    }
+
     dialogRef.afterClosed().subscribe(() => {
       this.getLaboratoires();
     });

@@ -9,6 +9,9 @@ import { ResponsableService } from 'src/app/service/responsable.service';
 import { getStatusName, showAlert, showConfirmationAlert } from 'src/app/utils/alertMessages';
 import { AddResponsableModalComponent } from './add-responsable-modal/add-responsable-modal.component';
 import { EditResponsableModalComponent } from './edit-responsable-modal/edit-responsable-modal.component';
+import { RespoAffairesFinancierService } from 'src/app/service/respo-affaires-financier.service';
+import { RespoAffairesFinancier } from 'src/app/model/respoAffairesFinancier .model';
+import { RespoMarche } from 'src/app/model/respoMarche.model';
 
 @Component({
   selector: 'app-responsable',
@@ -17,7 +20,10 @@ import { EditResponsableModalComponent } from './edit-responsable-modal/edit-res
 })
 export class ResponsableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'nom', 'prenom', 'tel', 'email', 'action'];
+  respoAffairesFinancierList!: RespoAffairesFinancier[];
+  respoMarcheList!: RespoMarche[];
+
+  displayedColumns: string[] = ['id', 'nom', 'prenom', 'tel', 'email', 'type','action'];
   public responsables: Responsable[] = [];
   dataSource: MatTableDataSource<Responsable> = new MatTableDataSource();
 
@@ -40,7 +46,15 @@ export class ResponsableComponent implements OnInit, AfterViewInit {
 
   private getResponsables(): void {
     this.responsableService.getAllResponsables().subscribe(
-      (responsables: Responsable[]) => {
+      (responsables: any[]) => {
+        console.log(responsables);
+
+        this.respoAffairesFinancierList = responsables.filter(r => r.type === 'Affaires_Financier') as RespoAffairesFinancier[];
+        this.respoMarcheList = responsables.filter(r =>r.type === "Marche") as RespoMarche[];
+
+        console.log(this.respoMarcheList);
+        console.log(this.respoAffairesFinancierList);
+
         this.responsables = responsables;
         this.dataSource = new MatTableDataSource(this.responsables);
         this.dataSource.sort = this.sort;
@@ -71,7 +85,8 @@ export class ResponsableComponent implements OnInit, AfterViewInit {
     );
   }
 
-  public onOpenResponsableModal(responsable: Responsable | null, operation: string) {
+  public onOpenResponsableModal(responsable: any | null, operation: string) {
+
     let dialogRef: any;
     if (operation === 'add') {
       dialogRef = this.dialog.open(AddResponsableModalComponent);
@@ -79,7 +94,7 @@ export class ResponsableComponent implements OnInit, AfterViewInit {
     if (operation === 'edit') {
       dialogRef = this.dialog.open(EditResponsableModalComponent, {
         data: {
-          responsable: responsable
+          responsable: responsable,
         }
       });
     }

@@ -66,9 +66,27 @@
           <mat-cell *matCellDef="let laboratoire"> {{ laboratoire.etablissement.nom }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="director">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by director">
+            Director
+          </mat-header-cell>
+          <mat-cell *matCellDef="let laboratoire">
+            <ng-container *ngIf="laboratoire.director; else setDirectorButton">
+              {{ laboratoire.director.name }}
+            </ng-container>
+            <ng-template #setDirectorButton>
+              <button mat-icon-button color="primary" (click)="onOpenLaboratoireModal(laboratoire, 'set-director')">
+                <mat-icon>person</mat-icon>
+              </button>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let laboratoire">
+
             <button mat-icon-button color="primary" (click)="onOpenLaboratoireModal(laboratoire, 'edit')">
               <mat-icon>edit</mat-icon>
             </button>

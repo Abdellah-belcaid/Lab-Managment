@@ -42,6 +42,13 @@
           <mat-cell *matCellDef="let responsable"> {{ responsable.email }} </mat-cell>
         </ng-container>
 
+
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> type
+          </mat-header-cell>
+          <mat-cell *matCellDef="let responsable"> {{ responsable.type }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let responsable">

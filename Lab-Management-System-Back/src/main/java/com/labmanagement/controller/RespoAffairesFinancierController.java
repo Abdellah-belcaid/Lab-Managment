@@ -10,7 +10,7 @@ import com.labmanagement.model.entity.RespoAffairesFinancier;
 import com.labmanagement.service.IRespoAffairesFinancierService;
 
 @RestController
-@RequestMapping("/api/v1/respoAffairesFinanciers")
+@RequestMapping("/api/v1/respo-affaire-financiers")
 public class RespoAffairesFinancierController {
 
 	private final IRespoAffairesFinancierService respoAffairesFinancierService;

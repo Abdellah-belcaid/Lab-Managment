@@ -12,7 +12,8 @@ import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 })
 export class EditResponsableModalComponent {
 
-  public editResponsable: Responsable;
+  public editResponsable: any;
+  public selectedResponsableType!: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -21,10 +22,13 @@ export class EditResponsableModalComponent {
   ) {
     console.log(data);
     this.editResponsable = data.responsable;
+    this.selectedResponsableType=data.responsable.type;
   }
 
   public onEditResponsable(responsableForm: any): void {
-    this.responsableService.updateResponsable(this.editResponsable.id, responsableForm.value).subscribe(
+    console.log(this.editResponsable);
+
+    this.responsableService.updateResponsable(this.editResponsable.id, this.editResponsable).subscribe(
       (response: Responsable) => {
         responsableForm.reset();
         this.dialogRef.close();

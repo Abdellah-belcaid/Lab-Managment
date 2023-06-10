@@ -30,6 +30,7 @@ public class ResponsableService implements IResponsableService {
 
 	@Override
 	public List<Responsable> findAllResponsables() {
+		
 		return responsableRepository.findAll();
 	}
 

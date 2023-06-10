@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ExpressionBesoin } from '../model/expressionBesoin.model';
 import { Responsable } from '../model/responsable.model';
+import { RespoMarcheService } from './responsable-marche.service';
+import { RespoMarche } from '../model/respoMarche.model';
+import { RespoAffairesFinancierService } from './respo-affaires-financier.service';
+import { RespoAffairesFinancier } from '../model/respoAffairesFinancier .model';
 
 const baseUrl = `${environment.apiUrl}/api/v1/responsables`;
 @Injectable({
@@ -11,22 +15,39 @@ const baseUrl = `${environment.apiUrl}/api/v1/responsables`;
 })
 export class ResponsableService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private respoMarcheService: RespoMarcheService,
+    private respoAffairesFinancierService:RespoAffairesFinancierService
+  ) { }
 
-  addResponsable(responsable: Responsable): Observable<Responsable> {
-    console.log(responsable);
-    return this.http.post<Responsable>(baseUrl, responsable);
+  addResponsable(responsable: any): Observable<any> {
+    if (responsable instanceof RespoMarche) {
+      return this.respoMarcheService.addRespoMarche(responsable);
+    }
+    if (responsable instanceof RespoAffairesFinancier) {
+      return this.respoAffairesFinancierService.addRespoAffairesFinancier(responsable);
+    }
+
+    return this.http.post<any>(baseUrl, responsable);
   }
 
-  getAllResponsables(): Observable<Responsable[]> {
-    return this.http.get<Responsable[]>(baseUrl);
+  getAllResponsables(): Observable<any[]> {
+
+    return this.http.get<any[]>(baseUrl);
   }
 
   getResponsableById(id: number): Observable<Responsable> {
     return this.http.get<Responsable>(`${baseUrl}/${id}`);
   }
 
-  updateResponsable(id: number, responsable: Responsable): Observable<Responsable> {
+  updateResponsable(id: number, responsable: any): Observable<Responsable> {
+    if (responsable.type==='Marche') {
+      return this.respoMarcheService.updateRespoMarche(id,responsable);
+    }
+    if (responsable.type ==="Affaires_Financier") {
+      return this.respoAffairesFinancierService.updateRespoAffairesFinancier(id,responsable);
+    }
     return this.http.put<Responsable>(`${baseUrl}/${id}`, responsable);
   }
 

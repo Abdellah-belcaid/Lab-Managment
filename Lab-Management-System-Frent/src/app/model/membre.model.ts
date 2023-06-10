@@ -2,12 +2,10 @@ import { Laboratoire } from './laboratoire.model';
 import { ExpressionBesoin } from './expressionBesoin.model';
 import { Dotation_Project } from './dotationProject.model';
 import { Dotation_Membre } from './dotationMembre.model';
+import { User } from './user.model';
 
-export class Membre {
-  id!: number;
-  name!: string;
+export class Membre  extends User{
   designation!: string;
-  email!: string;
   phoneNumber!: string;
   department!: string;
   researchArea!: string;

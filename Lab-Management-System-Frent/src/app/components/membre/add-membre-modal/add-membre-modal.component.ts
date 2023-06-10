@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Laboratoire } from 'src/app/model/laboratoire.model';
 import { Membre } from 'src/app/model/membre.model';
+import { Role } from 'src/app/model/role.enum';
 import { MembreService } from 'src/app/service/membre.service';
 import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 
@@ -15,6 +15,7 @@ import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 export class AddMembreModalComponent implements OnInit{
   public newMembre: Membre = new Membre();
   public laboratoires !: Laboratoire[];
+  roles: string[] = Object.values(Role);
 
   constructor(
     private membreService: MembreService,

@@ -2,14 +2,18 @@ package com.labmanagement.controller;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.labmanagement.model.entity.ExpressionBesoin;
+import com.labmanagement.model.entity.RespoMarche;
 import com.labmanagement.model.entity.Responsable;
 import com.labmanagement.service.IResponsableService;
+
+import ch.qos.logback.core.filter.Filter;
 
 @RestController
 @RequestMapping("/api/v1/responsables")
@@ -30,6 +34,7 @@ public class ResponsableController {
 	@GetMapping
 	public ResponseEntity<List<Responsable>> getAllResponsables() {
 		List<Responsable> responsables = responsableService.findAllResponsables();
+
 		return ResponseEntity.ok(responsables);
 	}
 

@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Edit Responsable</mat-card-title>
+    <mat-card-title>Edit Responsable {{editResponsable.type}}</mat-card-title>
   </mat-card-header>
 
   <form #responsableForm="ngForm" (ngSubmit)="onEditResponsable(responsableForm)">
@@ -29,7 +29,46 @@
             name="email">
         </mat-form-field>
       </div>
+
+
+      <div class="row" *ngIf="selectedResponsableType === 'Marche'">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Market Segment</mat-label>
+            <input matInput type="text" placeholder="Ex. Market Segment" [(ngModel)]="editResponsable.marketSegment"
+              name="marketSegment" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Experience Years</mat-label>
+            <input matInput type="number" placeholder="Ex. 5" [(ngModel)]="editResponsable.experienceYears"
+              name="experienceYears" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="selectedResponsableType === 'Affaires_Financier'">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <input matInput type="text" placeholder="Ex. Department" [(ngModel)]="editResponsable.department"
+              name="department" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Financial Qualification</mat-label>
+            <input matInput type="text" placeholder="Ex. Financial Qualification"
+              [(ngModel)]="editResponsable.financialQualification" name="financialQualification" required>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
+
+
+
+
 
     <div mat-dialog-actions class="action">
       <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>

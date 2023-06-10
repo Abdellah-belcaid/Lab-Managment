@@ -6,5 +6,6 @@ export class Responsable {
   prenom!: string;
   tel!: number;
   email!: string;
-  expressionBesoins: ExpressionBesoin[] = [];
+  type!:string;
+  expressionBesoins!: ExpressionBesoin[];
 }

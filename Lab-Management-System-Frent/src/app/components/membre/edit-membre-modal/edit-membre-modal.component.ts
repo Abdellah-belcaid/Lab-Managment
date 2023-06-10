@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Laboratoire } from 'src/app/model/laboratoire.model';
 import { Membre } from 'src/app/model/membre.model';
+import { Role } from 'src/app/model/role.enum';
 import { MembreService } from 'src/app/service/membre.service';
 import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 
@@ -13,21 +14,22 @@ import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
   styleUrls: ['edit-membre-modal.component.css']
 })
 export class EditMembreModalComponent {
-  editMembre: Membre;
+  editedMembre: Membre;
   laboratoires: Laboratoire[];
+  roles: string[] = Object.values(Role);
 
   constructor(
     private dialogRef: MatDialogRef<EditMembreModalComponent>,
     private membreService: MembreService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.editMembre = data.membre;
+    this.editedMembre = data.membre;
     this.laboratoires = data.laboratoires;
   }
 
   public onEditMembre(membreForm: any): void {
     console.log(membreForm.value);
-    this.membreService.updateMembre(this.editMembre.id, this.editMembre).subscribe(
+    this.membreService.updateMembre(this.editedMembre.id, this.editedMembre).subscribe(
       () => {
         membreForm.reset();
         this.dialogRef.close();

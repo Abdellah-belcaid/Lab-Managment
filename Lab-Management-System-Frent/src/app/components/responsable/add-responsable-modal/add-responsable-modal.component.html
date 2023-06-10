@@ -23,43 +23,56 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput type="email" placeholder="Ex. john.doe@example.com" [(ngModel)]="newResponsable.email" name="email" required>
+          <input matInput type="email" placeholder="Ex. john.doe@example.com" [(ngModel)]="newResponsable.email"
+            name="email" required>
         </mat-form-field>
       </div>
 
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Type</mat-label>
-          <mat-select [(ngModel)]="selectedResponsableType" name="responsableType" (selectionChange)="onResponsableTypeChange($event)">
+          <mat-select [(ngModel)]="selectedResponsableType" [ngModelOptions]="{ standalone: true }"
+            (selectionChange)="onResponsableTypeChange($event)" required>
             <mat-option value="RespoMarche">Respo Marche</mat-option>
             <mat-option value="RespoAffairesFinancier">Respo Affaires Financier</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
-      <div *ngIf="selectedResponsableType === 'RespoMarche'">
-        <mat-form-field appearance="outline">
-          <mat-label>Market Segment</mat-label>
-          <input matInput type="text" placeholder="Ex. Market Segment" [(ngModel)]="respoMarche.marketSegment" name="marketSegment" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Experience Years</mat-label>
-          <input matInput type="number" placeholder="Ex. 5" [(ngModel)]="respoMarche.experienceYears" name="experienceYears" required>
-        </mat-form-field>
+      <div class="row" *ngIf="selectedResponsableType === 'RespoMarche'">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Market Segment</mat-label>
+            <input matInput type="text" placeholder="Ex. Market Segment" [(ngModel)]="respoMarche.marketSegment"
+              name="marketSegment" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Experience Years</mat-label>
+            <input matInput type="number" placeholder="Ex. 5" [(ngModel)]="respoMarche.experienceYears"
+              name="experienceYears" required>
+          </mat-form-field>
+        </div>
       </div>
 
-      <div *ngIf="selectedResponsableType === 'RespoAffairesFinancier'">
-        <mat-form-field appearance="outline">
-          <mat-label>Department</mat-label>
-          <input matInput type="text" placeholder="Ex. Department" [(ngModel)]="respoAffairesFinancier.department" name="department" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Financial Qualification</mat-label>
-          <input matInput type="text" placeholder="Ex. Financial Qualification" [(ngModel)]="respoAffairesFinancier.financialQualification" name="financialQualification" required>
-        </mat-form-field>
+      <div clas="row" *ngIf="selectedResponsableType === 'RespoAffairesFinancier'">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <input matInput type="text" placeholder="Ex. Department" [(ngModel)]="respoAffairesFinancier.department"
+              name="department" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Financial Qualification</mat-label>
+            <input matInput type="text" placeholder="Ex. Financial Qualification"
+              [(ngModel)]="respoAffairesFinancier.financialQualification" name="financialQualification" required>
+          </mat-form-field>
+        </div>
       </div>
+
     </div>
 
     <div mat-dialog-actions class="action">

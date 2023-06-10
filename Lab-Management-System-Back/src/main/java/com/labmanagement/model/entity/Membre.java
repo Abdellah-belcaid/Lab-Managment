@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,22 +13,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Membre {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;	
-	private String designation; // Designation or role of the member in the lab
-	private String email;
+@DiscriminatorValue("Membre")
+@EqualsAndHashCode(callSuper = true)
+public class Membre extends User{
+	
+	private static final long serialVersionUID = 1L;
+		
+	private String designation; // Designation or role of the member in the lab	
 	private String phoneNumber;
 	private String department; // Department or academic unit the member belongs to
 	private String researchArea; // Research area or specialization of the member

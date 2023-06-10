@@ -1,0 +1,128 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New Director</mat-card-title>
+  </mat-card-header>
+
+  <form #directorForm="ngForm" (ngSubmit)="onAddDirector(directorForm)">
+    <div mat-dialog-content class="content">
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Ex. John Doe" [(ngModel)]="newDirector.name" name="name" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Ex. john@example.com" [(ngModel)]="newDirector.email" name="email"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Ex. john.doe" [(ngModel)]="newDirector.username" name="username" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Ex. Password123" [(ngModel)]="newDirector.password"
+              name="password" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="newDirector.phoneNumber"
+              name="phoneNumber" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <input matInput placeholder="Ex. Department" [(ngModel)]="newDirector.department" name="department"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Expertise</mat-label>
+            <input matInput type="text" placeholder="Ex. Expertise" [(ngModel)]="newDirector.expertise" name="expertise"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Designation</mat-label>
+            <input matInput type="text" placeholder="Ex. Designation" [(ngModel)]="newDirector.designation"
+              name="designation" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Research Area</mat-label>
+            <input matInput type="text" placeholder="Ex. Research Area" [(ngModel)]="newDirector.researchArea"
+              name="researchArea">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Qualification</mat-label>
+            <input matInput type="text" placeholder="Ex. Qualification" [(ngModel)]="newDirector.qualification"
+              name="qualification">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Office Number</mat-label>
+            <input matInput type="text" placeholder="Ex. Office Number" [(ngModel)]="newDirector.officeNumber"
+              name="officeNumber" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Shift Start Date</mat-label>
+            <input matInput [matDatepicker]="picker1" placeholder="Ex. Shift Start Date"
+              [(ngModel)]="newDirector.shiftStartDate" name="shiftStartDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Shift End Date</mat-label>
+            <input matInput [matDatepicker]="picker2" placeholder="Ex. Shift End Date"
+              [(ngModel)]="newDirector.shiftEndDate" name="shiftEndDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="directorForm.invalid">Save</button>
+    </div>
+  </form>
+</mat-card>

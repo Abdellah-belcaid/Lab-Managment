@@ -34,6 +34,8 @@ import { AddDotationMembreModalComponent } from './components/admin/dotation-uca
 import { EditDotationUcaRechModalComponent } from './components/admin/dotation-uca-rech/edit-dotation-uca-rech-modal/edit-dotation-uca-rech-modal.component';
 import { AddDotationUcaRechModalComponent } from './components/admin/dotation-uca-rech/add-dotation-uca-rech-modal/add-dotation-uca-rech-modal.component';
 import { DotationUcaRechComponent } from './components/admin/dotation-uca-rech/dotation-uca-rech.component';
+import { AddDirectorModalComponent } from './components/director/add-director-modal/add-director-modal.component';
+import { EditDirectorModalComponent } from './components/director/edit-director-modal/edit-director-modal.component';
 
 
 
@@ -74,7 +76,10 @@ import { DotationUcaRechComponent } from './components/admin/dotation-uca-rech/d
 
     DotationUcaRechComponent,
     AddDotationUcaRechModalComponent,
-    EditDotationUcaRechModalComponent
+    EditDotationUcaRechModalComponent,
+
+    AddDirectorModalComponent,
+    EditDirectorModalComponent
 
   ],
   imports: [
