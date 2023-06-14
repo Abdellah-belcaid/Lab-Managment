@@ -27,6 +27,7 @@ export class DotationProjetComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.loadDotationProjectsById(this.data.id,this.data.type);
+    
   }
 
   @ViewChild(MatSort) sort!: MatSort;

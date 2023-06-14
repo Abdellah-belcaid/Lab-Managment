@@ -1,0 +1,66 @@
+<body  class="page-background">
+  <section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+
+                  <div class="text-center">
+                    <img src="../../assets/images/lab-logo.png" style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1">We are The lab Managment Team</h4>
+                  </div>
+
+                  <form (ngSubmit)="login()">
+                    <p>Please login to your account</p>
+
+                    <div class="form-outline mb-4">
+                      <input type="email" id="username" class="form-control" placeholder="Phone number or email address"
+                        [(ngModel)]="user.username" name="username" required>
+                      <label class="form-label" for="username">Username</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="password" class="form-control" [(ngModel)]="user.password"
+                        name="password" required>
+                      <label class="form-label" for="password">Password</label>
+                    </div>
+
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
+                        in</button>
+                      <br>
+                      <a class="text-muted" href="#!">Forgot password?</a>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have an account?</p>
+                      <button type="button" class="btn btn-outline-danger">Create new</button>
+                    </div>
+                  </form>
+
+
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">Transforming Lab Management with Efficiency and Precision</h4>
+                  <p class="small mb-0">Our Lab Management System empowers researchers, academic institutions, and
+                    organizations with cutting-edge tools to streamline lab operations and enhance productivity.
+                    Seamlessly managing resources, equipment, experiments, and data, our platform revolutionizes
+                    research
+                    workflows. Experience advanced features like experiment tracking, inventory management,
+                    collaboration
+                    tools, and data analysis, all in one comprehensive solution. Stay ahead of the curve and unlock the
+                    full potential of your research endeavors with our intelligent Lab Management System.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>

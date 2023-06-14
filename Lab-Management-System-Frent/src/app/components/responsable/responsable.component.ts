@@ -23,7 +23,7 @@ export class ResponsableComponent implements OnInit, AfterViewInit {
   respoAffairesFinancierList!: RespoAffairesFinancier[];
   respoMarcheList!: RespoMarche[];
 
-  displayedColumns: string[] = ['id', 'nom', 'prenom', 'tel', 'email', 'type','action'];
+  displayedColumns: string[] = ['id', 'name', 'username', 'tel', 'email', 'created time', 'role', 'action'];
   public responsables: Responsable[] = [];
   dataSource: MatTableDataSource<Responsable> = new MatTableDataSource();
 
@@ -47,14 +47,8 @@ export class ResponsableComponent implements OnInit, AfterViewInit {
   private getResponsables(): void {
     this.responsableService.getAllResponsables().subscribe(
       (responsables: any[]) => {
-        console.log(responsables);
-
         this.respoAffairesFinancierList = responsables.filter(r => r.type === 'Affaires_Financier') as RespoAffairesFinancier[];
-        this.respoMarcheList = responsables.filter(r =>r.type === "Marche") as RespoMarche[];
-
-        console.log(this.respoMarcheList);
-        console.log(this.respoAffairesFinancierList);
-
+        this.respoMarcheList = responsables.filter(r => r.type === "Marche") as RespoMarche[];
         this.responsables = responsables;
         this.dataSource = new MatTableDataSource(this.responsables);
         this.dataSource.sort = this.sort;

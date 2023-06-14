@@ -1,1 +1,39 @@
-<p>edit-dotation-uca-rech-modal works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit DotationUcaRech</mat-card-title>
+  </mat-card-header>
+
+  <form #editDotationUcaRechForm="ngForm" (ngSubmit)="onEditDotationUcaRech(editDotationUcaRechForm)">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Titre</mat-label>
+            <input matInput type="text" placeholder="Enter Titre" [(ngModel)]="editedDotationUcaRech.title" name="title">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Anne Affectation</mat-label>
+            <input matInput type="number" placeholder="Enter Anne Affectation"
+              [(ngModel)]="editedDotationUcaRech.anneAffectation" name="anneAffectation">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" placeholder="Enter description" [(ngModel)]="editedDotationUcaRech.description"
+            name="description">
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="editDotationUcaRechForm.invalid">Save</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

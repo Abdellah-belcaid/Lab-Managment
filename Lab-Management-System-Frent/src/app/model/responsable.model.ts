@@ -1,11 +1,8 @@
 import { ExpressionBesoin } from './expressionBesoin.model';
+import { User } from './user.model';
 
-export class Responsable {
-  id!: number;
-  nom!: string;
-  prenom!: string;
+export class Responsable extends User{
   tel!: number;
-  email!: string;
   type!:string;
   expressionBesoins!: ExpressionBesoin[];
 }

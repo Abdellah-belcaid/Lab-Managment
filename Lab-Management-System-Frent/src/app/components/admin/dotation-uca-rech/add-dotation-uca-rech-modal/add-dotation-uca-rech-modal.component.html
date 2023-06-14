@@ -1,1 +1,39 @@
-<p>add-dotation-uca-rech-modal works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>New DotationUcaRech</mat-card-title>
+  </mat-card-header>
+
+  <form #dotationUcaRechForm="ngForm" (ngSubmit)="onAddDotationUcaRech(dotationUcaRechForm)">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Titre </mat-label>
+            <input matInput type="text" placeholder="Enter Titre" [(ngModel)]="newDotationUcaRech.title" name="title">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Anne Affectation</mat-label>
+            <input matInput type="number" placeholder="Enter Anne Affectation"
+              [(ngModel)]="newDotationUcaRech.anneAffectation" name="anneAffectation">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>description</mat-label>
+          <input matInput type="number" placeholder="Enter description" [(ngModel)]="newDotationUcaRech.description"
+            name="description">
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="dotationUcaRechForm.invalid">Add</button>
+      <button mat-raised-button color="" type="reset">Reset</button>
+    </div>
+  </form>
+</mat-card>

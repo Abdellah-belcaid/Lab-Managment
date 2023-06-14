@@ -11,7 +11,7 @@ export class Laboratoire {
   responsable!: string;
   domaine!: string;
   description!: string;
-  derictor!: Director;
+  director!: Director;
   etablissement!: Etablissement;
   membres!: Membre[];
 }

@@ -1,4 +1,4 @@
-<div class="container-xxl mt-2">
+<div class="container-fluid mt-2">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-subtitle>Responsable List</mat-card-subtitle>
@@ -18,17 +18,18 @@
           <mat-cell *matCellDef="let responsable"> {{ responsable.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="nom">
-          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Nom
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> name
           </mat-header-cell>
-          <mat-cell *matCellDef="let responsable"> {{ responsable.nom }} </mat-cell>
+          <mat-cell *matCellDef="let responsable"> {{ responsable.name }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="prenom">
-          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Prenom
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> username
           </mat-header-cell>
-          <mat-cell *matCellDef="let responsable"> {{ responsable.prenom }} </mat-cell>
+          <mat-cell *matCellDef="let responsable"> {{ responsable.username }} </mat-cell>
         </ng-container>
+
 
         <ng-container matColumnDef="tel">
           <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Tel
@@ -43,10 +44,17 @@
         </ng-container>
 
 
-        <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> type
+        <ng-container matColumnDef="created time">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> created Time
           </mat-header-cell>
-          <mat-cell *matCellDef="let responsable"> {{ responsable.type }} </mat-cell>
+          <mat-cell *matCellDef="let responsable"> {{ responsable.createTime | date:'yyyy-MM-dd' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Role
+          </mat-header-cell>
+          <mat-cell *matCellDef="let responsable"> {{ responsable.role }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="action">
@@ -55,7 +63,7 @@
             <button mat-icon-button color="primary" (click)="onOpenResponsableModal(responsable, 'edit')">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="onDeleteResponsable(responsable.id)" >
+            <button mat-icon-button color="warn" (click)="onDeleteResponsable(responsable.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>

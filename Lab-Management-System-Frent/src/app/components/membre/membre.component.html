@@ -1,4 +1,4 @@
-<div class="container-xxl mt-2">
+<div class="container-fluid mt-3">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-subtitle>Membre List</mat-card-subtitle>
@@ -60,11 +60,17 @@
           <mat-cell *matCellDef="let membre"> {{ membre.qualification }} </mat-cell>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="laboratoire">
+        <ng-container matColumnDef="laboratoire">
           <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Laboratoire
           </mat-header-cell>
-          <mat-cell *matCellDef="let membre"> {{membre!.laboratoire.nom}}</mat-cell>
-        </ng-container> -->
+          <mat-cell *matCellDef="let membre"> {{membre.laboratoire?.nom ?? '-'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> Role
+          </mat-header-cell>
+          <mat-cell *matCellDef="let membre"> {{membre!.role}}</mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
@@ -76,7 +82,7 @@
             <button mat-icon-button color="primary" (click)="onOpenMembreModal(membre, 'edit')">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="onDeleteMembre(membre.id)" >
+            <button mat-icon-button color="warn" (click)="onDeleteMembre(membre.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>
@@ -105,13 +111,3 @@
 
   </mat-card>
 </div>
-
-
-
-
-
-
-
-
-
-

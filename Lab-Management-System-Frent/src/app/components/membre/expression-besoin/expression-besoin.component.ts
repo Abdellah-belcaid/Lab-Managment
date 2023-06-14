@@ -9,6 +9,11 @@ import { ExpressionBesoinService } from 'src/app/service/expression-besoin.servi
 import { getStatusName, showAlert, showConfirmationAlert } from 'src/app/utils/alertMessages';
 import { AddExpressionBesoinModalComponent } from './add-expression-besoin-modal/add-expression-besoin-modal.component';
 import { EditExpressionBesoinModalComponent } from './edit-expression-besoin-modal/edit-expression-besoin-modal.component';
+import { User } from 'src/app/model/user.model';
+import { AuthenticationService } from 'src/app/service/authentication.service';
+import { MembreService } from 'src/app/service/membre.service';
+import { Membre } from 'src/app/model/membre.model';
+import { Role } from 'src/app/model/role.enum';
 
 @Component({
   selector: 'app-expression-besoin',
@@ -17,14 +22,24 @@ import { EditExpressionBesoinModalComponent } from './edit-expression-besoin-mod
 })
 export class ExpressionBesoinComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'description', 'montant', 'demandeDate', 'validatDate', 'isValid', 'membre', 'responsable', 'action'];
+  displayedColumns: string[] = ['description', 'montant approximatif', 'montant effectif', 'demandeDate', 'validatDate', 'isValid', 'membre', 'responsable', 'expressionBesoinType', 'action'];
   public expressionBesoins: ExpressionBesoin[] = [];
   dataSource: MatTableDataSource<ExpressionBesoin> = new MatTableDataSource();
+
+
+  currentUser: User = new User();
 
   constructor(
     private expressionBesoinService: ExpressionBesoinService,
     public dialog: MatDialog,
-  ) { }
+    private authenticationService: AuthenticationService,
+    private membreService: MembreService,
+  ) {
+    this.authenticationService.currentUser.subscribe(data => {
+      this.currentUser = data;
+    });
+
+  }
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,10 +54,32 @@ export class ExpressionBesoinComponent implements OnInit, AfterViewInit {
   }
 
   private getExpressionBesoins(): void {
-    this.expressionBesoinService.getAllExpressionBesoins().subscribe(
-      (expressionBesoins: ExpressionBesoin[]) => {
-        console.log(expressionBesoins);
-        this.expressionBesoins = expressionBesoins;
+    if (this.currentUser.role === Role.MEMBER) {
+      let membre: Membre = Object.assign(new Membre(), this.currentUser);
+      this.getExpressionBesoinsByMembreId(membre.id);
+    }
+    else {
+      this.expressionBesoinService.getAllExpressionBesoins().subscribe(
+        (expressionBesoins: ExpressionBesoin[]) => {
+          console.log(expressionBesoins);
+          this.expressionBesoins = expressionBesoins;
+          this.dataSource = new MatTableDataSource(this.expressionBesoins);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        },
+        (error: HttpErrorResponse) => {
+          // AlertMessages(this.snackBar, error);
+        }
+      );
+    }
+  }
+
+  private getExpressionBesoinsByMembreId(id: number): any {
+    this.membreService.getMembreById(id).subscribe(
+      (membre: Membre) => {
+        console.log(membre);
+        this.expressionBesoins = membre.expressionBesoins;
+        console.log(this.expressionBesoins);
         this.dataSource = new MatTableDataSource(this.expressionBesoins);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;

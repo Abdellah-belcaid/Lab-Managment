@@ -23,7 +23,7 @@ import { DotationMembreComponent } from './dotation-membre/dotation-membre.compo
 })
 export class DotationUcaRechComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'anneAffectation', 'membreNames', 'action'];
+  displayedColumns: string[] = ['id', 'title','description','anneAffectation', 'membreNames', 'action'];
   public dotationUcaRechs: DotationUcaRech[] = [];
   dataSource: MatTableDataSource<DotationUcaRech> = new MatTableDataSource();
 

@@ -3,6 +3,9 @@ package com.labmanagement.model.entity;
 import java.sql.Date;
 import java.util.Collection;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -33,6 +36,7 @@ public class Projet {
 
 	@OneToMany(mappedBy = "projet")
 	@JsonIgnoreProperties("projet")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Collection<Dotation_Project> dotationProjects;
 
 }

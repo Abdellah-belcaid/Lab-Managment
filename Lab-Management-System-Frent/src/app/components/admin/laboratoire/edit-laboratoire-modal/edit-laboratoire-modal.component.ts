@@ -1,12 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Laboratoire } from 'src/app/model/laboratoire.model';
 import { Etablissement } from 'src/app/model/etablissement.model';
+import { Laboratoire } from 'src/app/model/laboratoire.model';
 import { EtablissementService } from 'src/app/service/etablissement.service';
 import { LaboratoireService } from 'src/app/service/laboratoire.service';
-import { showAlert, getStatusName } from 'src/app/utils/alertMessages';
+import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 
 @Component({
   selector: 'app-edit-laboratoire-modal',
@@ -22,7 +21,6 @@ export class EditLaboratoireModalComponent {
     private laboratoireService: LaboratoireService,
     private etablissementService: EtablissementService,
     public dialogRef: MatDialogRef<EditLaboratoireModalComponent>,
-    private snackBar: MatSnackBar
   ) {
     console.log(data);
     this.editLaboratoire = data;

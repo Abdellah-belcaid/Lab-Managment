@@ -8,6 +8,7 @@ import { RespoMarcheService } from './responsable-marche.service';
 import { RespoMarche } from '../model/respoMarche.model';
 import { RespoAffairesFinancierService } from './respo-affaires-financier.service';
 import { RespoAffairesFinancier } from '../model/respoAffairesFinancier .model';
+import { Role } from '../model/role.enum';
 
 const baseUrl = `${environment.apiUrl}/api/v1/responsables`;
 @Injectable({
@@ -23,9 +24,11 @@ export class ResponsableService {
 
   addResponsable(responsable: any): Observable<any> {
     if (responsable instanceof RespoMarche) {
+      responsable.role=Role.RESPOSNABLE_MARCHE;
       return this.respoMarcheService.addRespoMarche(responsable);
     }
     if (responsable instanceof RespoAffairesFinancier) {
+      responsable.role=Role.RESPOSNABLE_AFFAIRES_FINANCIER;
       return this.respoAffairesFinancierService.addRespoAffairesFinancier(responsable);
     }
 

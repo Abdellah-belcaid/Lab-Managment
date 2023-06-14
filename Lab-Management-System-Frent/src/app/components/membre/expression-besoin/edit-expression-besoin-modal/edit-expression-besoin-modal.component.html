@@ -7,20 +7,33 @@
 
     <input type="hidden" name="id" [(ngModel)]="editedExpressionBesoin.id">
     <div mat-dialog-content class="content">
-      <div class="row">
+
+      <div class="row" *ngIf="!isDirector()">
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
           <input matInput type="text" placeholder="Enter Description" [(ngModel)]="editedExpressionBesoin.description"
             name="description" required>
         </mat-form-field>
+      </div>
+
+
+      <div class="row" *ngIf="!isDirector()">
         <mat-form-field appearance="outline">
-          <mat-label>Montant</mat-label>
-          <input matInput type="number" placeholder="Enter Montant" [(ngModel)]="editedExpressionBesoin.montant"
-            name="montant" required>
+          <mat-label>montant approximatif</mat-label>
+          <input matInput type="number" placeholder="Enter Montant"
+            [(ngModel)]="editedExpressionBesoin.montant_approximatif" name="montant_approximatif" required>
+        </mat-form-field>
+      </div>
+      <div class="row" *ngIf="isDirector()">
+        <mat-form-field appearance="outline">
+          <mat-label>montant effectif</mat-label>
+          <input matInput type="number" placeholder="Enter Montant"
+            [(ngModel)]="editedExpressionBesoin.montant_effectif" name="montant_effectif" required>
         </mat-form-field>
       </div>
 
-      <div class="row">
+
+      <div class="row" *ngIf="!isDirector()">
         <mat-form-field appearance="outline">
           <mat-label>Demande Date</mat-label>
           <input matInput [matDatepicker]="picker1" placeholder="Choose Demand Date"
@@ -28,6 +41,8 @@
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
+      </div>
+      <div class="row" *ngIf="isDirector()">
         <mat-form-field appearance="outline">
           <mat-label>Validation Date</mat-label>
           <input matInput [matDatepicker]="picker2" placeholder="Choose Validation Date"
@@ -37,33 +52,46 @@
         </mat-form-field>
       </div>
 
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Is Valid</mat-label>
-          <mat-select  name="isValid" [(value)]="selected" required>
-            <mat-option value="true" >Yes</mat-option>
-            <mat-option value="false">No</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="row" *ngIf="!isDirector()">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Membre</mat-label>
+            <mat-select [(ngModel)]="editedExpressionBesoin.membre" name="membre" required>
+              <mat-option [value]="editedExpressionBesoin.membre">{{ editedExpressionBesoin.membre.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Type Besoin</mat-label>
+            <mat-select [(ngModel)]="editedExpressionBesoin.typeBesoin" name="typeBesoin" required>
+              <mat-option *ngFor="let typeBesoin of typeBesoins" [value]="typeBesoin">{{ typeBesoin.type }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
 
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Membre</mat-label>
-          <mat-select [(ngModel)]="editedExpressionBesoin.membre" name="membre" required>
-            <mat-option *ngFor="let membre of membres" [value]="membre">{{ membre.name }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="row" *ngIf="isDirector()">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Responsable</mat-label>
+            <mat-select [(ngModel)]="editedExpressionBesoin.responsable" name="responsable" required>
+              <mat-option *ngFor="let responsable of responsables" [value]="responsable">{{ responsable.name
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Is Valid</mat-label>
+            <mat-select [(ngModel)]="editedExpressionBesoin.isValid" name="isValid" required>
+              <mat-option value="true">Yes</mat-option>
+              <mat-option value="false">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
 
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Type Besoin</mat-label>
-          <mat-select [(ngModel)]="editedExpressionBesoin.typeBesoins" name="typeBesoins" required multiple>
-            <mat-option *ngFor="let typeBesoin of typeBesoins" [value]="typeBesoin">{{ typeBesoin.type }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
     </div>
 
     <div mat-dialog-actions class="action">

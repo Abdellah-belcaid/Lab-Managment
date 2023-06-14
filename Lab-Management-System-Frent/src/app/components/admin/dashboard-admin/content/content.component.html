@@ -1,0 +1,206 @@
+<div class="main-content">
+  <div class="header bg-gradient-primary pb-8 pt-5 ">
+    <div class="container-fluid">
+      <div class="header-body">
+
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Etablissements</h5>
+                    <span class="h2 font-weight-bold mb-0">{{etablissements!.length}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-shopping-basket "></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-{{true ? 'success' : 'danger'}} mr-2">
+                    <i class="fas fa-arrow-{{1 >= 0 ? 'up' : 'down'}}"></i>
+                    10%
+                  </span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Membres </h5>
+                    <span class="h2 font-weight-bold mb-0">{{membres.length}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last week</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Laboratoires</h5>
+                    <span class="h2 font-weight-bold mb-0"> {{laboratoires.length}} </span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-{{-2 >= 0 ? 'success' : 'danger'}} mr-2">
+                    <i class="fas fa-arrow-{{0 >= 0 ? 'up' : 'down'}}"></i>
+                    {{ 10.876 | number: '1.2-2' }}%
+                  </span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Projets</h5>
+                    <span class="h2 font-weight-bold mb-0">{{ Projets.length  }}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-book"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-{{ 1>= 0 ? 'success' : 'danger'}} mr-2">
+                    <i class="fas fa-arrow-{{0 >= 0 ? 'up' : 'down'}}"></i>
+                    {{ 29 | number: '1.2-2' }}%
+                  </span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row mt-5">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Directors</h5>
+                    <span class="h2 font-weight-bold mb-0">{{directors!.length}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-shopping-basket "></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-{{true ? 'success' : 'danger'}} mr-2">
+                    <i class="fas fa-arrow-{{1 >= 0 ? 'up' : 'down'}}"></i>
+                    19%
+                  </span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Responsable Marche </h5>
+                    <span class="h2 font-weight-bold mb-0">{{respoMarche.length}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 48%</span>
+                  <span class="text-nowrap">Since last week</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Responsable Finances</h5>
+                    <span class="h2 font-weight-bold mb-0"> {{respoAffairesFinancier!.length}} </span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-{{-2 >= 0 ? 'success' : 'danger'}} mr-2">
+                    <i class="fas fa-arrow-{{-3 >= 0 ? 'up' : 'down'}}"></i>
+                    {{ 59.876 | number: '1.2-2' }}%
+                  </span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Dotations Uca@Rech  </h5>
+                    <span class="h2 font-weight-bold mb-0">{{ ucaRechs.length  }}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-book"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-{{ -1>= 0 ? 'success' : 'danger'}} mr-2">
+                    <i class="fas fa-arrow-{{-1 >= 0 ? 'up' : 'down'}}"></i>
+                    {{ 62 | number: '1.2-2' }}%
+                  </span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="container-xxl mx-2 my-4">
+      </div>
+    </div>
+  </div>

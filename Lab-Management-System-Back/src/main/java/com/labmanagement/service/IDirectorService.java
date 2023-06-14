@@ -12,4 +12,6 @@ public interface IDirectorService {
     Director saveDirector(Director director);
 
     void deleteDirector(Long id);
+
+	Director updateDirector(Long id, Director director);
 }

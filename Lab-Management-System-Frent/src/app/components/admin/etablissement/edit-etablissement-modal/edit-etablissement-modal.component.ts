@@ -27,7 +27,7 @@ export class EditEtablissementModalComponent {
   }
 
   public onEditEtablissement(etablissementForm: any): void {
-    this.etablissementService.updateEtablissement(this.editEtablissement.id, etablissementForm.value).subscribe(
+    this.etablissementService.updateEtablissement(this.editEtablissement.id, this.editEtablissement).subscribe(
       (response: Etablissement) => {
         etablissementForm.reset();
         this.dialogRef.close();

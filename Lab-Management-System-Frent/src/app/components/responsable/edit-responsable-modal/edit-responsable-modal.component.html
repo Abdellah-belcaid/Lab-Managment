@@ -8,28 +8,45 @@
       <input type="hidden" name="id" [(ngModel)]="editResponsable.id">
 
       <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Nom</mat-label>
-          <input matInput type="text" placeholder="Ex. John Doe" [(ngModel)]="editResponsable.nom" name="nom">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Prenom</mat-label>
-          <input matInput type="text" placeholder="Ex. Jane Smith" [(ngModel)]="editResponsable.prenom" name="prenom">
-        </mat-form-field>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput type="text" placeholder="Ex. John Doe" [(ngModel)]="editResponsable.name" name="nom"
+              required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Téléphone</mat-label>
+            <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="editResponsable.tel" name="tel"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput type="text" placeholder="Ex. johndoe" [(ngModel)]="editResponsable.username" name="username"
+              required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" [(ngModel)]="editResponsable.password" name="password" required>
+          </mat-form-field>
+        </div>
       </div>
 
       <div class="row">
         <mat-form-field appearance="outline">
-          <mat-label>Tel</mat-label>
-          <input matInput type="tel" placeholder="Ex. 1234567890" [(ngModel)]="editResponsable.tel" name="tel">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput type="email" placeholder="Ex. responsable@example.com" [(ngModel)]="editResponsable.email"
-            name="email">
+          <input matInput type="email" placeholder="Ex. john@example.com" [(ngModel)]="editResponsable.email"
+            name="email" required>
         </mat-form-field>
       </div>
-
 
       <div class="row" *ngIf="selectedResponsableType === 'Marche'">
         <div class="col">

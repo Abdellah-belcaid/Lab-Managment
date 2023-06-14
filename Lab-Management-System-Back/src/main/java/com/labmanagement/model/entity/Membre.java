@@ -2,6 +2,9 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.DiscriminatorColumn;
@@ -39,14 +42,17 @@ public class Membre extends User{
 
 	@OneToMany(mappedBy = "membre")
 	@JsonIgnoreProperties("membre")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Collection<ExpressionBesoin> expressionBesoins;
 
 	@OneToMany(mappedBy = "membre")
 	@JsonIgnoreProperties("membre")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Collection<Dotation_Project> dotationProjects;
 
 	@OneToMany(mappedBy = "membre")
 	@JsonIgnoreProperties("membre")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Collection<Dotation_Membre> dotation_Membres;
 
 }

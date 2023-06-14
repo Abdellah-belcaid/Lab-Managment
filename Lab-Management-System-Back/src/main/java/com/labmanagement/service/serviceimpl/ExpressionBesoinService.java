@@ -1,14 +1,13 @@
 package com.labmanagement.service.serviceimpl;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.labmanagement.model.entity.ExpressionBesoin;
 import com.labmanagement.model.entity.TypeBesoin;
+import com.labmanagement.model.enums.ExpressionBesoinType;
 import com.labmanagement.repository.ExpressionBesoinRepository;
 import com.labmanagement.repository.TypeBesoinRepository;
 import com.labmanagement.service.IExpressionBesoinService;
@@ -44,86 +43,25 @@ public class ExpressionBesoinService implements IExpressionBesoinService {
 
 	@Override
 	public ExpressionBesoin create(ExpressionBesoin expressionBesoin) {
-		try {
-			Collection<TypeBesoin> typeBesoins = expressionBesoin.getTypeBesoins();
-
-			// Save the ExpressionBesoin entity
-			ExpressionBesoin savedExpressionBesoin = expressionBesoinRepository.save(expressionBesoin);
-
-			// Set the saved ExpressionBesoin entity to the TypeBesoin entities using
-			// streams
-			List<TypeBesoin> savedTypeBesoins = typeBesoins.stream()
-					.peek(typeBesoin -> typeBesoin.setExpressionBesoin(savedExpressionBesoin))
-					.collect(Collectors.toList());
-
-			// Save the TypeBesoin entities
-			savedTypeBesoins = typeBesoinRepository.saveAll(savedTypeBesoins);
-
-			// Set the saved TypeBesoin entities to the ExpressionBesoin entity
-			savedExpressionBesoin.setTypeBesoins(savedTypeBesoins);
-
-			// Return the saved ExpressionBesoin entity
-			return savedExpressionBesoin;
-		} catch (Exception e) {
-			// Handle any exceptions that occur during the save process
-			throw new RuntimeException("Failed to create ExpressionBesoin: " + e.getMessage(), e);
-		}
+		TypeBesoin typeBesoin = typeBesoinRepository.save(expressionBesoin.getTypeBesoin());
+		expressionBesoin.setTypeBesoin(typeBesoin);
+		return expressionBesoinRepository.save(expressionBesoin);
 	}
 
 	@Override
 	public ExpressionBesoin update(ExpressionBesoin expressionBesoin) {
-		try {
-			Collection<TypeBesoin> typeBesoins = expressionBesoin.getTypeBesoins();
+		TypeBesoin type = expressionBesoinRepository.findById(expressionBesoin.getId()).get().getTypeBesoin();
+		ExpressionBesoinType expressionBesoinType = expressionBesoin.getTypeBesoin().getType();
 
-			// Check if the ExpressionBesoin entity exists
-			if (!expressionBesoinRepository.existsById(expressionBesoin.getId())) {
-				throw new RuntimeException("ExpressionBesoin not found with ID: " + expressionBesoin.getId());
-			}
+		type.setType(expressionBesoinType);
 
-			// Save the ExpressionBesoin entity
-			ExpressionBesoin updatedExpressionBesoin = expressionBesoinRepository.save(expressionBesoin);
-
-			// Set the updated ExpressionBesoin entity to the TypeBesoin entities using
-			// streams
-			List<TypeBesoin> savedTypeBesoins = typeBesoins.stream()
-					.peek(typeBesoin -> typeBesoin.setExpressionBesoin(updatedExpressionBesoin))
-					.collect(Collectors.toList());
-
-			// Save the TypeBesoin entities
-			savedTypeBesoins = typeBesoinRepository.saveAll(savedTypeBesoins);
-
-			// Set the saved TypeBesoin entities to the updated ExpressionBesoin entity
-			updatedExpressionBesoin.setTypeBesoins(savedTypeBesoins);
-
-			// Return the updated ExpressionBesoin entity
-			return updatedExpressionBesoin;
-		} catch (Exception e) {
-			// Handle any exceptions that occur during the update process
-			throw new RuntimeException("Failed to update ExpressionBesoin: " + e.getMessage(), e);
-		}
+		expressionBesoin.setTypeBesoin(type);	
+		return expressionBesoinRepository.save(expressionBesoin);
 	}
 
 	@Override
 	public void delete(Long id) {
-		try {
-			// Check if the ExpressionBesoin entity exists
-			if (!expressionBesoinRepository.existsById(id)) {
-				throw new RuntimeException("ExpressionBesoin not found with ID: " + id);
-			}
-
-			// Get the ExpressionBesoin entity
-			ExpressionBesoin expressionBesoin = expressionBesoinRepository.findById(id).orElse(null);
-
-			// Delete the associated TypeBesoin entities using streams
-			expressionBesoin.getTypeBesoins().stream().peek(typeBesoin -> typeBesoin.setExpressionBesoin(null))
-					.forEach(typeBesoinRepository::delete);
-
-			// Delete the ExpressionBesoin entity
-			expressionBesoinRepository.deleteById(id);
-		} catch (Exception e) {
-			// Handle any exceptions that occur during the delete process
-			throw new RuntimeException("Failed to delete ExpressionBesoin with ID: " + id + ". " + e.getMessage(), e);
-		}
+		expressionBesoinRepository.deleteById(id);
 	}
 
 }

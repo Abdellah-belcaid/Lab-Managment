@@ -4,9 +4,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ExpressionBesoin } from 'src/app/model/expressionBesoin.model';
 import { ExpressionBesoinType } from 'src/app/model/expressionBesoinType.enum';
 import { Membre } from 'src/app/model/membre.model';
+import { Responsable } from 'src/app/model/responsable.model';
+import { Role } from 'src/app/model/role.enum';
 import { TypeBesoin } from 'src/app/model/typeBesoin.model';
+import { User } from 'src/app/model/user.model';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { ExpressionBesoinService } from 'src/app/service/expression-besoin.service';
 import { MembreService } from 'src/app/service/membre.service';
+import { ResponsableService } from 'src/app/service/responsable.service';
 import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 
 @Component({
@@ -17,25 +22,34 @@ import { getStatusName, showAlert } from 'src/app/utils/alertMessages';
 export class EditExpressionBesoinModalComponent implements OnInit {
 
   public editedExpressionBesoin: ExpressionBesoin = new ExpressionBesoin();
-  selected!:string;
+  selected!: string;
   public membres: Membre[] = [];
+  public responsables: Responsable[] = [];
   public expressionBesoinTypes: string[] = Object.keys(ExpressionBesoinType);
   public typeBesoins: TypeBesoin[] = [];
+  public currentUser: User = new User();
+
 
   constructor(
     private expressionBesoinService: ExpressionBesoinService,
     public dialogRef: MatDialogRef<EditExpressionBesoinModalComponent>,
     private membreService: MembreService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private authenticationService: AuthenticationService,
+    private responsableService: ResponsableService,
   ) {
-    this.editedExpressionBesoin=data;
-    console.log(typeof(data.isValid));
-    this.selected=  data.isValid.toString();
-   }
+    this.authenticationService.currentUser.subscribe(data => {
+      this.currentUser = data;
+    });
+
+
+    this.editedExpressionBesoin = data;
+  }
 
   ngOnInit(): void {
     this.getMembres();
     this.populateTypeBesoins();
+    this.getResponsables();
 
   }
 
@@ -62,7 +76,7 @@ export class EditExpressionBesoinModalComponent implements OnInit {
 
   public onEditExpressionBesoin(expressionBesoinForm: any): void {
     console.log(expressionBesoinForm.value);
-    this.expressionBesoinService.updateExpressionBesoin(expressionBesoinForm.value).subscribe(
+    this.expressionBesoinService.updateExpressionBesoin(this.editedExpressionBesoin).subscribe(
       (response: ExpressionBesoin) => {
         expressionBesoinForm.reset();
         this.dialogRef.close();
@@ -72,5 +86,23 @@ export class EditExpressionBesoinModalComponent implements OnInit {
         showAlert('error', `Error: ${getStatusName(error.status)}`, `${error.message}`);
       }
     );
+  }
+
+
+
+
+  private getResponsables(): void {
+    this.responsableService.getAllResponsables().subscribe(
+      (responsables: Responsable[]) => {
+        this.responsables = responsables;
+      },
+      (error: HttpErrorResponse) => {
+        showAlert('error', `Error : ${getStatusName(error.status)}`, `${error.message}`);
+      }
+    );
+  }
+
+  isDirector(): boolean {
+    return this.currentUser.role === Role.DIRECTOR || this.currentUser.role === Role.ADMIN;
   }
 }

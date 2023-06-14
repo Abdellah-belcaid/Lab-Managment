@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Director } from '../model/director.model';
 import { environment } from 'src/environments/environment';
+import { Director } from '../model/director.model';
 
 const baseUrl = `${environment.apiUrl}/api/v1/directors`;
 
@@ -29,5 +29,11 @@ export class DirectorService {
   deleteDirector(id: number): Observable<void> {
     const url = `${baseUrl}/${id}`;
     return this.http.delete<void>(url);
+
+  }
+
+  updateDirector(id: number, director: Director): Observable<Director> {
+    const url = `${baseUrl}/${id}`;
+    return this.http.put<Director>(url, director);
   }
 }

@@ -39,4 +39,10 @@ public class DirectorController {
 		directorService.deleteDirector(id);
 		return ResponseEntity.noContent().build();
 	}
+	@PutMapping("/{id}")
+	public ResponseEntity<Director> updateDirector(@PathVariable Long id, @RequestBody Director director) {
+	    Director updatedDirector = directorService.updateDirector(id, director);
+	    return ResponseEntity.ok(updatedDirector);
+	}
+
 }

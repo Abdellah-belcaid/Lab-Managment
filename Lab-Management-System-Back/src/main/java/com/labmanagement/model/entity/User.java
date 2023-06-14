@@ -48,11 +48,15 @@ public class User implements Serializable {
 	private String password;
 
 	@Column(name = "create_time", nullable = false)
-	private LocalDateTime createTime=LocalDateTime.now();
-////
+	private LocalDateTime createTime = LocalDateTime.now();
+
 //	@Column(name = "Image_Path")
 //	private String Image_Path;
-//
+
+	// this attribute is only for fret-end proposes and don't affect the back-end
+	@Column(insertable = false, updatable = false)
+	private String type;
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", nullable = false)
 	private Role role;

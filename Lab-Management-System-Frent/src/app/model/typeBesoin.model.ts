@@ -5,5 +5,5 @@ import { ExpressionBesoin } from './expressionBesoin.model';
 export class TypeBesoin {
   id!: number;
   type!: ExpressionBesoinType;
-  expressionBesoins: ExpressionBesoin = new ExpressionBesoin;
+  expressionBesoins: ExpressionBesoin[]=[];
 }

@@ -10,6 +10,8 @@ import { getStatusName, showAlert, showConfirmationAlert } from 'src/app/utils/a
 import { AddLaboratoireModalComponent } from './add-laboratoire-modal/add-laboratoire-modal.component';
 import { EditLaboratoireModalComponent } from './edit-laboratoire-modal/edit-laboratoire-modal.component';
 import { AddDirectorModalComponent } from '../../director/add-director-modal/add-director-modal.component';
+import { BudgetData } from 'src/app/model/BudgetData.model';
+import { BudgetDataSummeryComponent } from './budget-data-summery/budget-data-summery.component';
 
 @Component({
   selector: 'app-laboratoire',
@@ -18,9 +20,11 @@ import { AddDirectorModalComponent } from '../../director/add-director-modal/add
 })
 export class LaboratoireComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'nom', 'email', 'adresse', 'telephone', 'responsable', 'domaine', 'description', 'etablissement','director', 'action'];
+  displayedColumns: string[] = ['id', 'nom', 'email', 'adresse', 'telephone', 'responsable', 'domaine', 'description', 'etablissement', 'director', 'action'];
   public laboratoires: Laboratoire[] = [];
   dataSource: MatTableDataSource<Laboratoire> = new MatTableDataSource();
+
+  public budgetData: BudgetData = new BudgetData();
 
   constructor(
     private laboratoireService: LaboratoireService,
@@ -91,6 +95,14 @@ export class LaboratoireComponent implements OnInit, AfterViewInit {
         data: laboratoire // passing etablissement data to the dialog component
       });
     }
+    if (operation === 'budget-summery') {
+      dialogRef = this.dialog.open(BudgetDataSummeryComponent, {
+        data: laboratoire // passing etablissement data to the dialog component
+      });
+    }
+
+
+
 
     dialogRef.afterClosed().subscribe(() => {
       this.getLaboratoires();
@@ -101,4 +113,5 @@ export class LaboratoireComponent implements OnInit, AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 }

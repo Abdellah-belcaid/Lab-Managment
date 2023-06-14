@@ -1,0 +1,97 @@
+<div class="container-fluid mt-2">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-subtitle>laboratoire badget Summery</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md">
+          <div class="table-responsive">
+            <table class="table table-striped" style="width: 100%; max-width: none;">
+              <tbody>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Structure de recherche</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.structure }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Directeur</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.directeur }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Reliquat à la date du 31 dec 2022</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.reliquatDec2022 }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Budget Février 2023</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.budgetFev2023 }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">TOTAL Budget à répartir</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.totalBudgetRepartir }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Frais de participation et d'inscription aux
+                    colloques</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.participationFees }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achats de petit outillage et petit équipement
+                  </td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.smallToolsEquipmentPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achat de fournitures informatiques</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.computerSuppliesPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achat de fournitures de bureau, papeterie et
+                    imprimés</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.officeSuppliesPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achat de matières premières</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.rawMaterialsPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Frais de transport du personnel et des étudiants
+                    à l'étranger</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.travelExpensesAbroad }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Indemnités de déplacement à l'intérieur du
+                    Royaume</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.travelExpensesInCountry }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Indemnités kilométriques</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.kilometerAllowance }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Indemnités de mission à l'étranger</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.missionExpensesAbroad }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achat de carburants</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.fuelPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achat de matériel scientifique</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.scientificEquipmentPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Achat de matériel informatique</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.computerEquipmentPurchase }}</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; padding-right: 80px;">Total</td>
+                  <td style="white-space: nowrap; padding-left: 80px;">{{ budgetData.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md"></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

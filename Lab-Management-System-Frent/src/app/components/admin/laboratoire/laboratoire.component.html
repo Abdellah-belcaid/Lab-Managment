@@ -1,4 +1,4 @@
-<div class="container-xxl mt-2">
+<div class="container-fluid mt-2">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-subtitle>Laboratoire List</mat-card-subtitle>
@@ -93,6 +93,10 @@
             <button mat-icon-button color="warn" (click)="onDeleteLaboratoire(laboratoire.id)">
               <mat-icon>delete</mat-icon>
             </button>
+            <button mat-icon-button color="warn" (click)="onOpenLaboratoireModal(laboratoire,'budget-summery')">
+              <mat-icon>list</mat-icon>
+            </button>
+
           </mat-cell>
         </ng-container>
 

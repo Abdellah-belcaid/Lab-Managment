@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class RespoMarche extends Responsable {
 
+	private static final long serialVersionUID = 1L;
 	private String marketSegment;
 	private int experienceYears;
 }
