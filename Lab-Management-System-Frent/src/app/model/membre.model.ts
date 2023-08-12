@@ -10,7 +10,7 @@ export class Membre  extends User{
   department!: string;
   researchArea!: string;
   qualification!: string;
-  laboratoire: Laboratoire = new Laboratoire;
+  laboratoire!: Laboratoire ;
   expressionBesoins: ExpressionBesoin[] = [];
   dotationProjects: Dotation_Project[] = [];
   dotation_Membres: Dotation_Membre[] = [];

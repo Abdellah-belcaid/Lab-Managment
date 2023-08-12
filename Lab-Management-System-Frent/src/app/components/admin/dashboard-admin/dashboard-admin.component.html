@@ -1,87 +1,87 @@
-<mat-sidenav-container autosize>
-  <mat-sidenav #sidenav mode="side" opened="isExpanded">
+<mat-toolbar>
+  <button (click)="drawer.toggle()" mat-icon-button> <mat-icon>menu</mat-icon> </button>
+  <span>Lab Managment System | </span>
+
+  <button mat-button [routerLink]="''" routerLinkActive="active-link">Home</button>
+  
+  <span class="example-spacer"></span>
+  
+  <button mat-button routerLink="/profile" routerLinkActive="active-link">
+    <mat-icon>account_circle</mat-icon>profile
+  </button>
+  
+  <button mat-button (click)="logOut()" *ngIf="currentUser?.id">
+    <mat-icon aria-label="logout icon" fontIcon="logout" color="warn"></mat-icon>
+    Sign Out
+  </button>
+
+</mat-toolbar>
+
+<mat-drawer-container>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+
+    <img class="avatar mat-elevation-z8 img" src="https://xsgames.co/randomusers/avatar.php?g=male">
+    <h4 class="name">Abdellah belcaid</h4>
+    <p class="designation">Software Engineer</p>
+
+    <mat-divider></mat-divider>
+
     <mat-nav-list>
 
-      <mat-list-item class="sidebar-item" (click)="isExpanded = !isExpanded">
-        <div class="sidebar-item-container">
-          <mat-icon mat-list-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
-          
-        </div>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/etablissements'" routerLinkActive="active-link">
+          <mat-icon>business</mat-icon>
+          Etablissements
+        </button>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'/admin/etablissements'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>business</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">etablissements</span>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/laboratoires'" routerLinkActive="active-link">
+          <mat-icon>science</mat-icon>
+          Laboratoires
+        </button>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'/admin/laboratoires'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>science</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">laboratoires</span>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/membre'" routerLinkActive="active-link">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Membres
+        </button>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'/admin/membre'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">membre</span>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/projet'" routerLinkActive="active-link">
+          <mat-icon>description</mat-icon>
+          Projets
+        </button>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'/admin/projet'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>description </mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">projet</span>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/responsable'" routerLinkActive="active-link">
+          <mat-icon>assignment_ind</mat-icon>
+          Responsables
+        </button>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'/admin/responsable'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>assignment_ind</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">responsable</span>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/expressionBesoin'" routerLinkActive="active-link">
+          <mat-icon>gesture</mat-icon>
+          Expressions Besoin
+        </button>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'/admin/expressionBesoin'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>gesture</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">expressionBesoin</span>
+      <mat-list-item>
+        <button mat-button [routerLink]="'/admin/dotation-uca-rech'" routerLinkActive="active-link">
+          <mat-icon>money</mat-icon>
+          Dotation-uca-rech
+        </button>
       </mat-list-item>
-
-
-      <mat-list-item [routerLink]="'/admin/dotation-uca-rech'" routerLinkActive="active-link">
-        <mat-icon mat-list-icon>money</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">dotation-uca-rech</span>
-      </mat-list-item>
-
 
     </mat-nav-list>
-  </mat-sidenav>
-
-  <!-- Content - rendered Content for the current router path into the <router-outlet>, e.g. /dashboard or /info-->
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <button mat-icon-button routerLink="/" routerLinkActive="active-link" class="example-icon"
-        aria-label="Example icon-button with menu icon">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-      </button>
-      <span>Lab Managment System | </span>
-
-      <span class="example-spacer"></span>
-
-      <!-- <button mat-button routerLink="/login" routerLinkActive="active-link">
-        <mat-icon aria-label="login icon" fontIcon="login"></mat-icon>
-        Sign In
-      </button>
-      <button mat-button routerLink="/register" routerLinkActive="active-link">
-        <mat-icon>touch_app </mat-icon>
-        Sign Up
-      </button>
-
-      <button mat-button routerLink="/profile" routerLinkActive="active-link">
-        <mat-icon>account_circle</mat-icon>profile
-      </button>
- -->
-      <button mat-button (click)="logOut()" *ngIf="currentUser?.id">
-        <mat-icon aria-label="logout icon" fontIcon="logout" color="warn"></mat-icon>
-        Sign Out
-      </button>
-
-    </mat-toolbar>
-
-     <router-outlet></router-outlet>
-
-  </mat-sidenav-content>
-
-</mat-sidenav-container>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="content mat-elevation-z4">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

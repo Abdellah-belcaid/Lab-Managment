@@ -1,17 +1,18 @@
 package com.labmanagement.service;
 
+import com.labmanagement.model.dao.DirectorDTO;
 import com.labmanagement.model.entity.Director;
 
 import java.util.List;
 
 public interface IDirectorService {
-    List<Director> getAllDirectors();
+	List<DirectorDTO> getAllDirectors();
 
-    Director getDirectorById(Long id);
+	DirectorDTO getDirectorById(Long id);
 
-    Director saveDirector(Director director);
+	DirectorDTO saveDirector(Director director);
 
-    void deleteDirector(Long id);
+	void deleteDirector(Long id);
 
-	Director updateDirector(Long id, Director director);
+	DirectorDTO updateDirector(Long id, Director director);
 }

@@ -33,14 +33,14 @@ const routes: Routes = [
       { path: 'expressionBesoin', component: ExpressionBesoinComponent },
       { path: 'dotation-uca-rech', component: DotationUcaRechComponent },
     ],
-    canActivate: [AuthGuard],
-    data: { roles: [Role.ADMIN] }
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.ADMIN] }
   },
 
   {
     path: 'director', component: DashboardDirectorComponent,
-    canActivate: [AuthGuard],
-    data: { roles: [Role.ADMIN, Role.DIRECTOR] }
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.ADMIN, Role.DIRECTOR] }
   },
 
   {

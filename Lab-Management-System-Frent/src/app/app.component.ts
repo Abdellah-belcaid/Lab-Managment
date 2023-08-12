@@ -14,10 +14,8 @@ import { User } from './model/user.model';
 export class AppComponent implements OnInit {
   title = 'Lab-Management-System-Frent';
 
-  isLoginPage: boolean = true;
   currentUser: User = new User();
-  isLoading = false;
-
+  
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
@@ -27,13 +25,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.setLoading(true);
-    window.onload = () => {
-      this.isLoading = false;
-    };
+  ngOnInit() {   
   }
-
 
   isAdmin() {
     return this.currentUser?.role === Role.ADMIN;
@@ -43,10 +36,7 @@ export class AppComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
-
-  setLoading(value: boolean): void {
-    this.isLoading = value;
-  }
+  
 }
 
 

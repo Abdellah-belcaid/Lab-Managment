@@ -11,6 +11,7 @@ import com.labmanagement.model.entity.ExpressionBesoin;
 import com.labmanagement.model.entity.Laboratoire;
 import com.labmanagement.model.entity.Membre;
 import com.labmanagement.service.IMembreService;
+import com.labmanagement.model.dao.MembreDTO;
 import com.labmanagement.model.entity.Dotation_Project;
 
 import lombok.RequiredArgsConstructor;
@@ -23,20 +24,20 @@ public class MembreController {
 	private final IMembreService membreService;
 
 	@PostMapping
-	public ResponseEntity<Membre> addMembre(@RequestBody Membre membre) {
-		Membre addedMembre = membreService.addMembre(membre);
+	public ResponseEntity<MembreDTO> addMembre(@RequestBody Membre membre) {
+		MembreDTO addedMembre = membreService.addMembre(membre);
 		return ResponseEntity.status(HttpStatus.CREATED).body(addedMembre);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Membre>> getAllMembres() {
-		List<Membre> membres = membreService.findAllMembres();
+	public ResponseEntity<List<MembreDTO>> getAllMembres() {
+		List<MembreDTO> membres = membreService.findAllMembres();
 		return ResponseEntity.ok(membres);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Membre> getMembreById(@PathVariable Long id) {
-		Membre membre = membreService.findMembreById(id);
+	public ResponseEntity<MembreDTO> getMembreById(@PathVariable Long id) {
+		MembreDTO membre = membreService.findMembreById(id);
 		if (membre != null) {
 			return ResponseEntity.ok(membre);
 		} else {
@@ -45,9 +46,9 @@ public class MembreController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Membre> updateMembre(@PathVariable Long id, @RequestBody Membre membre) {
+	public ResponseEntity<MembreDTO> updateMembre(@PathVariable Long id, @RequestBody Membre membre) {
 		membre.setId(id);
-		Membre updatedMembre = membreService.updateMembre(membre);
+		MembreDTO updatedMembre = membreService.updateMembre(membre);
 		return ResponseEntity.ok(updatedMembre);
 	}
 

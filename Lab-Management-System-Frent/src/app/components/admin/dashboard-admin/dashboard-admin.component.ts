@@ -3,13 +3,19 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 
+let actions: Array<any> = [
+  { title: "", route: "", icon: "" },
+  { title: "", route: "", icon: "" },
+  { title: "", route: "", icon: "" },
+]
+
 @Component({
   selector: 'app-dashboard-admin',
   templateUrl: './dashboard-admin.component.html',
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent {
-  isExpanded: boolean = false;
+
   currentUser: User = new User();
 
 

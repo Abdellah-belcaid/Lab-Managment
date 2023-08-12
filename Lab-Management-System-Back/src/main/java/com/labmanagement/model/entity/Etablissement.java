@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +31,7 @@ public class Etablissement {
 	private String gsm;
 	private String adresse;
 
-	@OneToMany(mappedBy = "etablissement",cascade =CascadeType.ALL )
+	@OneToMany(mappedBy = "etablissement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JsonProperty(access = Access.READ_ONLY)
 	@JsonIgnoreProperties("etablissement")
 	private Collection<Laboratoire> laboratoires;

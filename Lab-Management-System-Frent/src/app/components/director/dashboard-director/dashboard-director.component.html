@@ -1,71 +1,194 @@
-<mat-sidenav-container autosize>
-  <!-- Content - rendered Content for the current router path into the <router-outlet>, e.g. /dashboard or /info-->
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <button mat-icon-button routerLink="/" routerLinkActive="active-link" class="example-icon"
-        aria-label="Example icon-button with menu icon">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-      </button>
-      <span>Lab Managment System | </span>
+<mat-toolbar>
+  <button mat-icon-button routerLink="/" routerLinkActive="active-link" class="example-icon"
+    aria-label="Example icon-button with menu icon">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+  </button>
+  <span>Lab Managment System | </span>
 
-      <span class="example-spacer"></span>
+  <span class="example-spacer"></span>
 
-      <button mat-button (click)="logOut()" *ngIf="currentUser?.id">
-        <mat-icon aria-label="logout icon" fontIcon="logout" color="warn"></mat-icon>
-        Sign Out
-      </button>
+  <button mat-button (click)="logOut()" *ngIf="currentUser?.id">
+    <mat-icon aria-label="logout icon" fontIcon="logout" color="warn"></mat-icon>
+    Sign Out
+  </button>
 
-    </mat-toolbar>
-    <div class="row">
-      <div class="col-3">
-        <div class="card">
-          <div class="img">
-            <img src="https://xsgames.co/randomusers/avatar.php?g=male">
+</mat-toolbar>
+
+<mat-drawer-container>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+
+    <mat-nav-list>
+
+      <mat-list-item>
+        <span class="icon-container" [routerLink]="'/director/membres'" routerLinkActive="active-link">
+          <mat-icon>business</mat-icon>
+        </span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <span class="icon-container" [routerLink]="'/director/laboratoires'" routerLinkActive="active-link">
+          <mat-icon>science</mat-icon>
+        </span>
+      </mat-list-item>
+
+      <mat-list-item>
+        <span class="icon-container" [routerLink]="'/director/laboratoires'" routerLinkActive="active-link">
+          <mat-icon>business</mat-icon>
+        </span>
+      </mat-list-item>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+
+
+    <div class="content mat-elevation-z4">
+      <div class="row">
+
+        <!-- <div class="card">
+        
+        <div class="img">
+          <img src="https://xsgames.co/randomusers/avatar.php?g=male">
+        </div>
+        <div class="infos">
+          <div class="name">
+            <h2>{{currentUser.name}}</h2>
+            <h4>{{currentUser.email}}</h4>
           </div>
-          <div class="infos">
-            <div class="name">
-              <h2>{{currentUser.name}}</h2>
-              <h4>{{currentUser.email}}</h4>
+          
+          <ul class="stats">
+            <li>
+              <h3>Role</h3>
+              <h4>{{currentUser.role}}</h4>
+            </li>
+            <li>
+              <h3>Dotations</h3>
+              <h4>{{currentUser.dotationProjects.length +currentUser.dotation_Membres.length}}</h4>
+            </li>
+            <li>
+              <h3>Expression Besoin</h3>
+              <h4>{{currentUser.expressionBesoins.length}}</h4>
+            </li>
+          </ul>
+          <div class="links">
+            
+          </div>
+        </div>
+      </div> -->
+
+        <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-2 py-3"><img class="rounded-circle mt-5"
+              width="150px" src="https://xsgames.co/randomusers/avatar.php?g=male"><span
+              class="font-weight-bold">{{currentUser.name}}</span><span class="text-black-50">{{currentUser.email}}</span><span>
+            </span>
+          </div>
+        </div>
+        <div class="col border-right">
+          <div class="p-2 py-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="text-right">Profile Settings</h4>
             </div>
-            <!-- <p class="text">
-          I'm a Front End Developer, follow me to be the first
-          who see my new work.
-        </p> -->
-            <ul class="stats">
-              <li>
-                <h3>Role</h3>
-                <h4>{{currentUser.role}}</h4>
-              </li>
-              <li>
-                <h3>Dotations</h3>
-                <h4>{{currentUser.dotationProjects.length +currentUser.dotation_Membres.length}}</h4>
-              </li>
-              <li>
-                <h3>Expression Besoin</h3>
-                <h4>{{currentUser.expressionBesoins.length}}</h4>
-              </li>
-            </ul>
-            <div class="links">
-              <!-- <button class="follow">Follow</button>
-          <button class="view">View profile</button> -->
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Name</label>
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="currentUser.name" >
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Designation</label>
+                <input type="text" class="form-control" placeholder="Designation" [(ngModel)]="currentUser.designation">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Username</label>
+                <input type="text" class="form-control" placeholder="Username" [(ngModel)]="currentUser.username" disabled>
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Email</label>
+                <input type="text" class="form-control" placeholder="Email" [(ngModel)]="currentUser.email">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="labels">Phone Number</label>
+                <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)]="currentUser.phoneNumber">
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Department</label>
+                <input type="text" class="form-control" placeholder="Department" [(ngModel)]="currentUser.department">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="labels">Research Area</label>
+                <input type="text" class="form-control" placeholder="Research Area" [(ngModel)]="currentUser.researchArea">
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Qualification</label>
+                <input type="text" class="form-control" placeholder="Qualification" [(ngModel)]="currentUser.qualification">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="labels">Office Number</label>
+                <input type="text" class="form-control" placeholder="Office Number" [(ngModel)]="currentUser.officeNumber">
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Expertise</label>
+                <input type="text" class="form-control" placeholder="Expertise" [(ngModel)]="currentUser.expertise">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label class="labels">Shift Start Date</label>
+                <input type="date" class="form-control" placeholder="Shift Start Date" [(ngModel)]="currentUser.shiftStartDate">
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Shift End Date</label>
+                <input type="date" class="form-control" placeholder="Shift End Date" [(ngModel)]="currentUser.shiftEndDate">
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <button class="btn btn-primary profile-button" type="button">Save Profile</button>
             </div>
           </div>
         </div>
+        
+        <!-- <div class="col-md-4">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span
+            class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+        <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text"
+            class="form-control" placeholder="experience" value=""></div> <br>
+        <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control"
+            placeholder="additional details" value=""></div>
       </div>
-      <div class="col">
-        <app-membre></app-membre>
+    </div> -->
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <app-projet></app-projet>
-      </div>
-      <div class="col">
-        <app-dotation-uca-rech></app-dotation-uca-rech>
+
+    <div class="content mat-elevation-z4">
+      <div class="row">
+        <div class="">
+          <app-membre></app-membre>
+        </div>
       </div>
     </div>
-    <!-- <router-outlet></router-outlet> -->
-  </mat-sidenav-content>
 
-</mat-sidenav-container>
+
+    <div class="content mat-elevation-z4">
+      <div class="row">
+        <div class="col">
+          <app-projet></app-projet>
+        </div>
+        <div class="col">
+          <app-dotation-uca-rech></app-dotation-uca-rech>
+        </div>
+      </div>
+      <!-- <router-outlet></router-outlet> -->
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

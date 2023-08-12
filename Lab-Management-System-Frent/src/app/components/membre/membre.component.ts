@@ -56,7 +56,7 @@ export class MembreComponent implements OnInit, AfterViewInit {
 
   private getMembres(): void {
 
-    if (this.currentUser.role === Role.DIRECTOR) {
+    if (this.currentUser?.role === Role.DIRECTOR) {
       let dir: Director = Object.assign(new Director(), this.currentUser);
       this.getLaboratoireById(dir.laboratoire.id);
     }

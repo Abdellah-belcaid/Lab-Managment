@@ -7,7 +7,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue(value = "Director")

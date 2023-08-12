@@ -2,9 +2,6 @@ package com.labmanagement.model.entity;
 
 import java.util.Collection;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -20,14 +17,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue(value = "Responsable")
-public class Responsable extends User{	
+public class Responsable extends User {
 	private static final long serialVersionUID = 1L;
-	
+
 	private int tel;
-	
+
 	@OneToMany(mappedBy = "responsable")
 	@JsonIgnoreProperties("responsable")
-	
 	private Collection<ExpressionBesoin> expressionBesoins;
 
 }

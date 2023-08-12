@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,11 +18,13 @@ import { AddEtablissementModalComponent } from './components/admin/etablissement
 import { EditEtablissementModalComponent } from './components/admin/etablissement/edit-etablissement-modal/edit-etablissement-modal.component';
 import { EtablissementComponent } from './components/admin/etablissement/etablissement.component';
 import { AddLaboratoireModalComponent } from './components/admin/laboratoire/add-laboratoire-modal/add-laboratoire-modal.component';
+import { BudgetDataSummeryComponent } from './components/admin/laboratoire/budget-data-summery/budget-data-summery.component';
 import { EditLaboratoireModalComponent } from './components/admin/laboratoire/edit-laboratoire-modal/edit-laboratoire-modal.component';
 import { LaboratoireComponent } from './components/admin/laboratoire/laboratoire.component';
 import { AddDirectorModalComponent } from './components/director/add-director-modal/add-director-modal.component';
 import { DashboardDirectorComponent } from './components/director/dashboard-director/dashboard-director.component';
 import { EditDirectorModalComponent } from './components/director/edit-director-modal/edit-director-modal.component';
+import { SpinnerComponent } from './components/elements/spinner/spinner.component';
 import { LoginComponent } from './components/guest/login/login.component';
 import { AddMembreModalComponent } from './components/membre/add-membre-modal/add-membre-modal.component';
 import { DashboardMembreComponent } from './components/membre/dashboard-membre/dashboard-membre.component';
@@ -40,7 +42,7 @@ import { ProjetComponent } from './components/membre/projet/projet.component';
 import { AddResponsableModalComponent } from './components/responsable/add-responsable-modal/add-responsable-modal.component';
 import { EditResponsableModalComponent } from './components/responsable/edit-responsable-modal/edit-responsable-modal.component';
 import { ResponsableComponent } from './components/responsable/responsable.component';
-import { BudgetDataSummeryComponent } from './components/admin/laboratoire/budget-data-summery/budget-data-summery.component';
+import { LoadingInterceptor } from './guards/loading.interceptor';
 
 
 
@@ -100,6 +102,8 @@ import { BudgetDataSummeryComponent } from './components/admin/laboratoire/budge
     DashboardDirectorComponent,
     DashboardMembreComponent,
 
+
+    SpinnerComponent,
   ],
   imports: [
     HttpClientModule,
@@ -111,7 +115,11 @@ import { BudgetDataSummeryComponent } from './components/admin/laboratoire/budge
     MaterialModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

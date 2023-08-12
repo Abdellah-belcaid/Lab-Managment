@@ -6,17 +6,18 @@ import java.util.List;
 import com.labmanagement.model.entity.ExpressionBesoin;
 import com.labmanagement.model.entity.Laboratoire;
 import com.labmanagement.model.entity.Membre;
+import com.labmanagement.model.dao.MembreDTO;
 import com.labmanagement.model.entity.Dotation_Project;
 
 public interface IMembreService {
 
-	Membre addMembre(Membre membre);
+	MembreDTO addMembre(Membre membre);
 
-	List<Membre> findAllMembres();
+	List<MembreDTO> findAllMembres();
 
-	Membre findMembreById(Long id);
+	MembreDTO findMembreById(Long id);
 
-	Membre updateMembre(Membre membre);
+	MembreDTO updateMembre(Membre membre);
 
 	void deleteMembre(Long id);
 

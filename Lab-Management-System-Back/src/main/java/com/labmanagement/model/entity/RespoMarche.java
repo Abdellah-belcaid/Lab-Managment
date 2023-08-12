@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue(value = "Marche")

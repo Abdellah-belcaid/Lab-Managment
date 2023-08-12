@@ -27,7 +27,7 @@ export class BudgetData {
 
   public assignValuesFromLaboratoire(laboratoire: Laboratoire, year: number): void {
     this.structure = laboratoire.nom + ' , ' + laboratoire.etablissement.nom;
-    this.directeur = laboratoire.director.name;
+    this.directeur = laboratoire.director?.name ?? 'not affected';
     this.budgetFev2023 = this.calculateDotationSum(year, laboratoire);
     this.total = this.calculateExpressionBesion(year, laboratoire);
     this.reliquatDec2022 = this.calculateExpressionBesion(year - 1, laboratoire);

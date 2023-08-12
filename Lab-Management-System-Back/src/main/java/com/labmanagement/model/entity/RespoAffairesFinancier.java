@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue(value = "Affaires_Financier")
 public class RespoAffairesFinancier extends Responsable {
 
+	private static final long serialVersionUID = 1L;
 	private String department;
 	private String financialQualification;
 }

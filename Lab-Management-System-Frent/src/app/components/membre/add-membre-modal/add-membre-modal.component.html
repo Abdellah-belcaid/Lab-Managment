@@ -67,7 +67,7 @@
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>Laboratoire</mat-label>
-            <mat-select [(ngModel)]="newMembre.laboratoire" name="laboratoire" required>
+            <mat-select [(ngModel)]="newMembre.laboratoire" name="laboratoire" >
               <mat-option *ngFor="let lab of laboratoires" [value]="lab">{{ lab.nom }}</mat-option>
             </mat-select>
           </mat-form-field>

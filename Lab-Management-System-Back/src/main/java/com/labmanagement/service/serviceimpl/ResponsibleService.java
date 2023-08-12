@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ResponsableService implements IResponsableService {
+public class ResponsibleService implements IResponsableService {
 
 	private final ResponsableRepository responsableRepository;
 
